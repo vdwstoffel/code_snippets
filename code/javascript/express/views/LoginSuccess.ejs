@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Authentication Example Success</title>
+  </head>
+  <body>
+    <% if (loggedIn) { %>
+    <h1>You are Logged in</h1>
+    <form action="/authentication/logout" method="POST">
+        <button>Log out</button>
+    </form>
+    <% } else { %>
+    <h1>You are not logged in</h1>
+    <a href="/authentication/login">Login</a>
+    <% } %>
+  </body>
+</html>
