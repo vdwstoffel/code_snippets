@@ -1,5 +1,4 @@
-# pip install psycopg2
-import psycopg2                     # https://pypi.org/project/psycopg2/
+import psycopg2                     # pip install psycopg2
 from dotenv import load_dotenv      # pip install python-dotenv
 import os
 
