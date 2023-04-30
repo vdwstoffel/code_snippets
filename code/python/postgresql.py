@@ -1,15 +1,19 @@
 # pip install psycopg2
-import psycopg2      # https://pypi.org/project/psycopg2/
+import psycopg2                     # https://pypi.org/project/psycopg2/
+from dotenv import load_dotenv      # pip install python-dotenv
+import os
+
+load_dotenv()
 
 
 class PostgreSql():
 
     def __init__(self) -> None:
 
-        self.user = "stoffel"
-        self.password = "StoffelJossie"
-        self.database = "examples"
-        self.host = "localhost"
+        self.user = os.getenv("USER")
+        self.password = os.getenv("PASSWORD")
+        self.database = os.getenv("DATABASE")
+        self.host = os.getenv("HOST")
 
     def connect_to_database(self):
         """

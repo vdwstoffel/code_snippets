@@ -1,6 +1,7 @@
 .venv
 .vscode
 node_modules/
+.env
 
 # Logs
 logs
