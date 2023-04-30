@@ -1,7 +1,7 @@
 "use strict";
 
 /*
-A Collection of usefull modules
+A Collection of useful modules
 */ 
 
 /***************
