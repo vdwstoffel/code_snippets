@@ -7,6 +7,7 @@ import Loops from "./components/Loops";
 import FormExample from "./components/FormExample";
 import FormPassingData from "./components/FormPassingData";
 import Counter from "./components/useStateExample";
+import CustomHooks from "./components/CustomHooks";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/formexample" element={<FormExample />} />
         <Route path="/formpassingdata" element={<FormPassingData />} />
         <Route path='/usestateexample' element={<Counter />} />
+        <Route path='/customhooks' element={<CustomHooks />} />
       </Routes>
     </BrowserRouter>
   );
