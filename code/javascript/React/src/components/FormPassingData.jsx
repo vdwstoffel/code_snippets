@@ -1,11 +1,11 @@
 import { useState } from "react";
 
+/***************************
+ ****** Child Component *****
+ ****************************/
 function FormExample(props) {
   const [username, setUsername] = useState("");
 
-/***************************
-****** Child Component *****
-****************************/
   const handleSubmit = (event) => {
     event.preventDefault(); // Prevent the page from refreshing
     props.addNameFunction(username); // Call the parent function
@@ -28,8 +28,8 @@ function FormExample(props) {
 }
 
 /****************************
-****** Parent Component *****
-*****************************/
+ ****** Parent Component *****
+ *****************************/
 function NamesList() {
   const [names, setNames] = useState([]);
 
