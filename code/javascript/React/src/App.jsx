@@ -8,6 +8,7 @@ import FormExample from "./components/FormExample";
 import FormPassingData from "./components/FormPassingData";
 import Counter from "./components/useStateExample";
 import CustomHooks from "./components/CustomHooks";
+import SWMovies from "./components/useEffectExample";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/formpassingdata" element={<FormPassingData />} />
         <Route path='/usestateexample' element={<Counter />} />
         <Route path='/customhooks' element={<CustomHooks />} />
+        <Route path='/useeffect' element={<SWMovies />} />
       </Routes>
     </BrowserRouter>
   );

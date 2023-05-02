@@ -1,18 +1,50 @@
 import { useState } from "react";
 
-function FormExample() {
-  const [username, setUsername] = useState("");
+/**************************************
+ ***** External custom input hook *****
+ **************************************/
 
-  const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent the page from refreshing
-    console.log(username);
-    setUsername(""); // Empty the input after submission
+function useFormInput(initialValue) {
+  // Custom hook to manage form input
+  const [value, setValue] = useState(initialValue);
+
+  const handleChange = (e) => {
+    setValue(e.target.value);
+  };
+
+  const reset = () => {
+    setValue("");
+  };
+
+  return [value, handleChange, reset];
+}
+
+/******************************************/
+
+// import useFormInput from "./useFormInput";
+function FormExample() {
+  const [username, handleUsernameSubmit, usernameReset] = useFormInput(); // Custom hook to manage form input
+  const [email, handleEmailSubmit, emailReset] = useFormInput();
+  
+  const [name, setName] = useState(""); // useState hook to manage state
+  const [mail, setMail] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setName(username);
+    setMail(email);
+    usernameReset();
+    emailReset();
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="name">Name</label>
-      <input type="text" id='name' name="name" value={username} onChange={((e) => setUsername(e.target.value))} />
+      <h1>Hello {name}</h1>
+      <h1>Email {mail}</h1>
+      <label>Name:</label>
+      <input value={username} onChange={handleUsernameSubmit} />
+      <label>Email:</label>
+      <input value={email} onChange={handleEmailSubmit} />
       <button type="submit">Submit</button>
     </form>
   );
