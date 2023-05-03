@@ -1,3 +1,5 @@
+'use strict';
+
 // remove an item from an array
 const names = ['John', 'Jane', 'Mary'];
 const index = names.indexOf('Jane');
@@ -11,7 +13,7 @@ console.log(all); // [ 'apple', 'pear', 'orange', 'grapes' ]
 
 // map example
 const cars = ['BMW', 'Volvo', 'Saab'];
-console.log(cars.map(x => x.toLocaleUpperCase)); // [ 'BMW', 'VOLVO', 'SAAB' ]
+console.log(cars.map(x => x.toLocaleUpperCase())); // [ 'BMW', 'VOLVO', 'SAAB' ]
 
 // filter example
 const numbers = [1, 2, 3, 4, 5];
@@ -20,3 +22,9 @@ const filtered = numbers.filter(x => x > 3); // [ 4, 5 ]
 // reduce example
 const nums = [1, 2, 3, 4, 5];
 const sum = nums.reduce((a, b) => a + b, 0); // 15
+
+// destructure example
+const [a, b, c] = [1, 2, 3];
+console.log(a); // 1
+console.log(b); // 2
+console.log(c); // 3
