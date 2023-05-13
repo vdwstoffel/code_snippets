@@ -10,6 +10,7 @@ import Counter from "./components/useStateExample";
 import CustomHooks from "./components/CustomHooks";
 import SWMovies from "./components/useEffectExample";
 import ChildrenComponents from "./components/ChildrenComponents";
+import CssModules from "./components/CssModules";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/usestateexample" element={<Counter />} />
           <Route path="/customhooks" element={<CustomHooks />} />
           <Route path="/useeffect" element={<SWMovies />} />
+          <Route path='cssmodules' element={<CssModules />} />
         </Routes>
       </BrowserRouter>
     </ChildrenComponents>
