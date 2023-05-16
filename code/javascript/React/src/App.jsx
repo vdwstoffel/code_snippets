@@ -11,6 +11,7 @@ import CustomHooks from "./components/CustomHooks";
 import SWMovies from "./components/useEffectExample";
 import ChildrenComponents from "./components/ChildrenComponents";
 import CssModules from "./components/CssModules";
+import UseRefExample from "./components/useRefExample";
 
 function App() {
   return (
@@ -29,7 +30,8 @@ function App() {
           <Route path="/usestateexample" element={<Counter />} />
           <Route path="/customhooks" element={<CustomHooks />} />
           <Route path="/useeffect" element={<SWMovies />} />
-          <Route path='cssmodules' element={<CssModules />} />
+          <Route path="/cssmodules" element={<CssModules />} />
+          <Route path="/userefexample" element={<UseRefExample />} />
         </Routes>
       </BrowserRouter>
     </ChildrenComponents>
