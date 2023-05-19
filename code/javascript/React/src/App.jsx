@@ -12,6 +12,8 @@ import SWMovies from "./components/useEffectExample";
 import ChildrenComponents from "./components/ChildrenComponents";
 import CssModules from "./components/CssModules";
 import UseRefExample from "./components/useRefExample";
+import PortalExample from "./components/PortalsExample";
+import UseReducerExample from "./components/useReducerExample";
 
 function App() {
   return (
@@ -32,8 +34,10 @@ function App() {
           <Route path="/useeffect" element={<SWMovies />} />
           <Route path="/cssmodules" element={<CssModules />} />
           <Route path="/userefexample" element={<UseRefExample />} />
+          <Route path='usereducerexample' element={<UseReducerExample />} />
         </Routes>
       </BrowserRouter>
+      <PortalExample />
     </ChildrenComponents>
   );
 }

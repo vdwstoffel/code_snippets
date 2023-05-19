@@ -1,5 +1,9 @@
 import { useRef } from "react";
 
+/*
+Instead of giving state to an input give a reference to it
+ */
+
 function UseRefExample() {
   const nameInputRef = useRef();
 
