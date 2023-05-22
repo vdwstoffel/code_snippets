@@ -14,29 +14,36 @@ import CssModules from "./components/CssModules";
 import UseRefExample from "./components/useRefExample";
 import PortalExample from "./components/PortalsExample";
 import UseReducerExample from "./components/useReducerExample";
+import AuthContext from "./context/auth-context";
+import UseContextExample from "./components/UseContextExample";
+import { useState } from "react";
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false)
   return (
     <ChildrenComponents className="PassedClass">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/component" element={<FunctionComponent />} />
-          <Route
-            path="/props"
-            element={<PropsExample title={"Hello from props"} />}
-          />
-          <Route path="/conditionals" element={<Conditionals />} />
-          <Route path="/loops" element={<Loops />} />
-          <Route path="/formexample" element={<FormExample />} />
-          <Route path="/formpassingdata" element={<FormPassingData />} />
-          <Route path="/usestateexample" element={<Counter />} />
-          <Route path="/customhooks" element={<CustomHooks />} />
-          <Route path="/useeffect" element={<SWMovies />} />
-          <Route path="/cssmodules" element={<CssModules />} />
-          <Route path="/userefexample" element={<UseRefExample />} />
-          <Route path='usereducerexample' element={<UseReducerExample />} />
-        </Routes>
-      </BrowserRouter>
+      <AuthContext.Provider value={{ isLoggedIn: loggedIn }}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/component" element={<FunctionComponent />} />
+            <Route
+              path="/props"
+              element={<PropsExample title={"Hello from props"} />}
+            />
+            <Route path="/conditionals" element={<Conditionals />} />
+            <Route path="/loops" element={<Loops />} />
+            <Route path="/formexample" element={<FormExample />} />
+            <Route path="/formpassingdata" element={<FormPassingData />} />
+            <Route path="/usestateexample" element={<Counter />} />
+            <Route path="/customhooks" element={<CustomHooks />} />
+            <Route path="/useeffect" element={<SWMovies />} />
+            <Route path="/cssmodules" element={<CssModules />} />
+            <Route path="/userefexample" element={<UseRefExample />} />
+            <Route path="usereducerexample" element={<UseReducerExample />} />
+            <Route path="/usecontextexample" element={<UseContextExample btnFn={() => setLoggedIn(!loggedIn)} />} />
+          </Routes>
+        </BrowserRouter>
+      </AuthContext.Provider>
       <PortalExample />
     </ChildrenComponents>
   );
