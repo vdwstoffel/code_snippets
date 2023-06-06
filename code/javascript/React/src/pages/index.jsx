@@ -1,13 +1,16 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
-function Index () {
-    return (
-      <ul>
-        <li>
-          <Link to="/usecontext">useContext</Link>
-        </li>
-      </ul>
-    );
+function Index() {
+  return (
+    <ul>
+      <li>
+        <Link to="/usecontext">useContext</Link>
+      </li>
+      <li>
+        <Link to="/redux">Redux</Link>
+      </li>
+    </ul>
+  );
 }
 
-export default Index
+export default Index;

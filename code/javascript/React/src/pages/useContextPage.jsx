@@ -1,4 +1,4 @@
-import ExampleUseContext from "../examples/ExampleUseContext";
+import ExampleUseContext from "../components/ExampleUseContext";
 
 function UseContextPage() {
   document.title = "useContext Example";
