@@ -7,8 +7,8 @@ class Database {
   constructor() {
     (this.database = process.env.DATABASE),
       (this.host = process.env.HOST),
-      (this.user = process.env.USER),
-      (this.password = process.env.PASSWORD);
+      (this.user = process.env.DB_USER),
+      (this.password = process.env.DB_PASSWORD);
   }
 
   connectToDatabase = () => {

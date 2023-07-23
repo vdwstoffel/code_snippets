@@ -2,15 +2,15 @@ import psycopg2                     # pip install psycopg2
 from dotenv import load_dotenv      # pip install python-dotenv
 import os
 
-load_dotenv()
+load_dotenv(dotenv_path='../.env')
 
 
-class PostgreSql():
+class Connector():
 
     def __init__(self) -> None:
 
-        self.user = os.getenv("USER")
-        self.password = os.getenv("PASSWORD")
+        self.user = os.getenv("DB_USER")
+        self.password = os.getenv("DB_PASSWORD")
         self.database = os.getenv("DATABASE")
         self.host = os.getenv("HOST")
 
@@ -30,48 +30,58 @@ class PostgreSql():
         else:
             raise Exception("Database connection failed")
 
+
+class Users(Connector):
+
     def get_all_users(self):
-        '''
-        This example will get all users from the database
-        '''
-
         conn = self.connect_to_database()
-        cur = conn.cursor()
+        curr = conn.cursor()
+
         try:
-            cur.execute('''
-                    SELECT * FROM users;
-            ''')
-            query = cur.fetchall()
+            curr.execute('SELECT * FROM users')
+            query = curr.fetchall()
             conn.commit()
             conn.close()
-            return query
+            return (query)  # return a list of tuples
         except Exception as e:
             print(e)
             conn.rollback()
             conn.close()
 
-    def get_user(self, user):
-        '''
-        This example will use f-string to get a user
-        '''
+    def get_user(self, username):
         conn = self.connect_to_database()
-        cur = conn.cursor()
+        curr = conn.cursor()
+
         try:
-            cur.execute(f'''
-                SELECT * FROM users
-                WHERE username = '{user}';
-            ''')
-            query = cur.fetchone()
+            curr.execute(f"""SELECT * FROM users
+                         WHERE username = '{username}'""")
+            query = curr.fetchone()
             conn.commit()
             conn.close()
-            return query
+            return (query)  # return a tuple
         except Exception as e:
             print(e)
             conn.rollback()
             conn.close()
 
+    def insert_user_record(self, data: tuple):
+        conn = self.connect_to_database()
+        cur = conn.cursor()
+        try:
+            cur.execute("""
+                INSERT INTO users (username, age)
+                VALUES (%s, %s);
+                        """, data)
+        except Exception as e:
+            print(e)
+        finally:
+            conn.commit()
+            conn.close()
 
-if __name__ == '__main__':
-    db = PostgreSql()
+
+if __name__ == "__main__":
+    db = Users()
+    db.connect_to_database()
+    db.insert_user_record(("Rits", 2))
     print(db.get_all_users())
-    print(db.get_user('stoffel'))
+    print(db.get_user('Stoffel'))
