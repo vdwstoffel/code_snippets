@@ -1,9 +1,9 @@
 "use strict";
 
-const { Client } = require("pg");               // npm i pg
-require("dotenv").config({path: '../.env'});    // npm i dotenv
+const { Client } = require("pg"); // npm i pg
+require("dotenv").config({ path: "../.env" }); // npm i dotenv
 
-class Database {
+class Connector {
   constructor() {
     (this.database = process.env.DATABASE),
       (this.host = process.env.HOST),
@@ -24,7 +24,9 @@ class Database {
     });
     return client;
   };
+}
 
+class User extends Connector {
   getUser = async (argument) => {
     const client = this.connectToDatabase();
     await client.connect();
@@ -37,7 +39,21 @@ class Database {
       console.log(err);
     }
   };
+
+  insertUser = async (username, age) => {
+    const client = this.connectToDatabase();
+    await client.connect();
+    try {
+      await client.query(`INSERT INTO users (username, age)
+                          VALUES ('${username}', '${age}');`);
+      await client.end();
+    } catch (err) {
+      console.log(err);
+      await client.end();
+    }
+  };
 }
 
-const test = new Database();
-test.getUser("stoffel").then(res => console.log(res));
+const test = new User();
+test.insertUser("Mavis", 3);
+test.getUser("Stoffel").then((res) => console.log(res));
