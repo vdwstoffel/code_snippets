@@ -1,7 +1,7 @@
 from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton
 import sys
 
-class MainWindowShell(QMainWindow):
+class QPushButtonExample(QMainWindow):
 
     def __init__(self):
 
@@ -21,6 +21,6 @@ class MainWindowShell(QMainWindow):
 
 if __name__ == '__main__':
     app = QApplication([])
-    window = MainWindowShell()
+    window = QPushButtonExample()
     window.show()
     sys.exit(app.exec())

@@ -1,7 +1,7 @@
 from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel
 import sys
 
-class MainWindowShell(QMainWindow):
+class QLabelExample(QMainWindow):
 
     def __init__(self):
 
@@ -17,6 +17,6 @@ class MainWindowShell(QMainWindow):
 
 if __name__ == '__main__':
     app = QApplication([])
-    window = MainWindowShell()
+    window = QLabelExample()
     window.show()
     sys.exit(app.exec())

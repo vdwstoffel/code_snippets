@@ -1,7 +1,7 @@
 from PyQt6.QtWidgets import QApplication, QMainWindow, QComboBox
 import sys
 
-class MainWindowShell(QMainWindow):
+class ComboBoxExample(QMainWindow):
 
     def __init__(self):
 
@@ -16,6 +16,6 @@ class MainWindowShell(QMainWindow):
 
 if __name__ == '__main__':
     app = QApplication([])
-    window = MainWindowShell()
+    window = ComboBoxExample()
     window.show()
     sys.exit(app.exec())

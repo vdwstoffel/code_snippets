@@ -1,7 +1,7 @@
 from PyQt6.QtWidgets import QApplication, QMainWindow, QTextEdit
 import sys
 
-class MainWindowShell(QMainWindow):
+class TextEditExample(QMainWindow):
 
     def __init__(self):
 
@@ -14,11 +14,11 @@ class MainWindowShell(QMainWindow):
         self.text_edit.setFixedSize(400, 400)   # Set the size
         self.text_edit.setText("newValue")      # Preset a value
         self.text_edit.setReadOnly(False)       # Set editable to True/False
-        print(self.text_edit.toPlainText())     # Get the text
+        print(self.text_edit.toPlainText())     # Get the
 
 
 if __name__ == '__main__':
     app = QApplication([])
-    window = MainWindowShell()
+    window = TextEditExample()
     window.show()
     sys.exit(app.exec())
