@@ -12,7 +12,9 @@ class QMessageBoxExample(QMainWindow):
     def show_message(self):
 
         # Create a message box
-        message_box = QMessageBox.question(self, 'Confirmation', "Do you accept", QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+        message_box = QMessageBox.question(self, 'Confirmation', "Do you accept", 
+                                           QMessageBox.StandardButton.Yes | 
+                                           QMessageBox.StandardButton.No)
         
         # Check what is clicked
         if message_box == QMessageBox.StandardButton.Yes:
