@@ -1,2 +1,2 @@
 INSERT INTO users (username, age)
-VALUES ('Stoffel', 30);
+VALUES ('Stoffel3', 30)

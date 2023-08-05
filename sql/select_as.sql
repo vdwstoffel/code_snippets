@@ -1,0 +1,1 @@
+SELECT username AS user FROM users;
