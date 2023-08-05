@@ -6,7 +6,7 @@ class ComboBoxExample(QMainWindow):
     def __init__(self):
 
         super().__init__()
-        self.setWindowTitle("Menu Example")
+        self.setWindowTitle("ComboBoxExample")
         self.setFixedWidth(300)
         self.setFixedHeight(300)
 
