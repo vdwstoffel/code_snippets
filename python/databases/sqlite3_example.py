@@ -1,37 +1,30 @@
-import psycopg2                     # pip install psycopg2
-from dotenv import load_dotenv      # pip install python-dotenv
-import os
+import sqlite3
 
-load_dotenv(dotenv_path='../.env')
-
-
-class Connector():
-
-    def __init__(self) -> None:
-
-        self.user = os.getenv("DB_USER")
-        self.password = os.getenv("DB_PASSWORD")
-        self.database = os.getenv("DATABASE")
-        self.host = os.getenv("HOST")
-
+class Connector:
     def connect_to_database(self):
-        """
-        Establishes and active connection to the database and returns to connection
-        """
-        conn = psycopg2.connect(
-            database=self.database,
-            host=self.host,
-            user=self.user,
-            password=self.password
-        )
+        conn = sqlite3.connect("snippets.sqlite3")
 
         if conn:
             return conn
         else:
-            raise Exception("Database connection failed")
+            print("Error connecting to database")
 
 
 class Users(Connector):
+
+    def create_table_users(self):
+        conn = self.connect_to_database()
+        curr = conn.cursor()
+
+        curr.execute("""
+                        CREATE TABLE users (
+                            user_id integer PRIMARY KEY AUTOINCREMENT,
+                            username text,
+                            age integer
+                        )
+                    """)
+        conn.commit()
+        conn.close()
 
     def get_all_users(self):
         conn = self.connect_to_database()
@@ -53,8 +46,10 @@ class Users(Connector):
         curr = conn.cursor()
 
         try:
-            curr.execute(f"""SELECT * FROM users
-                         WHERE username = '{username}'""")
+            curr.execute(f"""
+                         SELECT * FROM users
+                         WHERE username = '{username}'
+                         """)
             query = curr.fetchone()
             conn.commit()
             conn.close()
@@ -70,7 +65,7 @@ class Users(Connector):
         try:
             cur.execute("""
                 INSERT INTO users (username, age)
-                VALUES (%s, %s);
+                VALUES (?, ?);
                         """, data)
         except Exception as e:
             print(e)
@@ -82,6 +77,11 @@ class Users(Connector):
 if __name__ == "__main__":
     db = Users()
     db.connect_to_database()
-    db.insert_user_record(("Rits", 2))
+    try:
+        db.create_table_users()
+    except:
+        pass
+    db.insert_user_record(("Stoffel", 2))
     print(db.get_all_users())
     print(db.get_user('Stoffel'))
+    
