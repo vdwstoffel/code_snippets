@@ -7,7 +7,7 @@ from email.mime.base import MIMEBase
 from dotenv import load_dotenv
 import os
 
-load_dotenv(dotenv_path='../.env')
+load_dotenv(dotenv_path='../../.env')
 
 sender_email = os.getenv('SENDER_EMAIL')
 receiver_email = os.getenv('RECEIVER_EMAIL')
