@@ -74,10 +74,19 @@ docker run <image_name>
 
 # host port is what you connect to
 # container port is same as app
-docker run -d -p <host_port>:<container_port> <image_name>
+docker run -d -p <host_port>:<container_port> --name docker_example <image_name>
 
 # Restart a container 
 docker start <container_id>
+```
+
+## Named Volumes
+When container is stopped/remove just run it again with the same volume
+```bash
+docker run -v feedback:/app/feedback <container_id>
+
+# list all volumes
+docker volumes ls
 ```
 
 ### Run commands
@@ -86,7 +95,9 @@ docker start <container_id>
 #   -d: detach  (run in background)
 #   -i: interactive
 #   -t: terminal
-#   --name string
+#   --name string: ex --name my_container
+#   --rm: remove container once stopped
+#   -v: volume_name:path    ex, -v feedback:/app/feedback
 ```
 
 ## Stop Container
@@ -116,6 +127,12 @@ docker run --rm <container_id>
 docker cp <container_id>:/path/to/file path/on/local/disk
 ```
 
+# Docker Logs
+The view and debug containers
+```bash
+docker logs <container_name>
+```
+
 # Dockerfile
 
 ```docker
@@ -125,7 +142,7 @@ WORKDIR /the/workdir/path
 
 COPY source dest
 
-RUN command                 # Runs when image is build
+RUN command                 # Runs when image is build, ex npm install, apt install, pip install
 
 COPY source dest
 
