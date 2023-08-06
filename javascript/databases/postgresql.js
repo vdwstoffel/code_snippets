@@ -1,7 +1,7 @@
 "use strict";
 
-const { Client } = require("pg"); // npm i pg
-require("dotenv").config({ path: "../.env" }); // npm i dotenv
+const { Client } = require("pg");               // npm i pg
+require("dotenv").config({ path: "../../.env" }); // npm i dotenv
 
 class Connector {
   constructor() {

@@ -1,8 +1,8 @@
 "use strict";
 
-const axios = require("axios");
-const endpoint =
-  "https://react-course-2591d-default-rtdb.europe-west1.firebasedatabase.app/cart.json";
+const axios = require("axios"); // npm i axios
+require("dotenv").config({ path: "../../.env" }); // npm i dotenv
+const endpoint = process.env["FIREBASE"];
 
 /***************
  ***** GET *****
