@@ -1,7 +1,7 @@
 import axios from "axios";
-require("dotenv").config({ path: "../../../.env" }); 
+require("dotenv").config({ path: "../../../.env" });
 
-function showItems(props) {
+export default function showItems(props) {
   const firebaseData = props;
   return (
     <>
@@ -9,8 +9,6 @@ function showItems(props) {
     </>
   );
 }
-
-export default showItems;
 
 // only works in page component files
 export async function getStaticProps(context) {

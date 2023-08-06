@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-function Index(props) {
+export default function Index(props) {
   // receives the data as props argument
   return (
     <>
@@ -9,5 +9,3 @@ function Index(props) {
     </>
   );
 }
-
-export default Index;

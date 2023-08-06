@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import Link from "next/link";
 
-function News() {
+export default function News() {
   return (
     <Fragment>
       <h1>Posts Index at /posts</h1>
@@ -14,5 +14,3 @@ function News() {
     </Fragment>
   );
 }
-
-export default News;

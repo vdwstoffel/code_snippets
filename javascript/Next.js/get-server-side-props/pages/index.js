@@ -1,11 +1,9 @@
 import axios from "axios";
 
-function Index(props) {
+export default function Index(props) {
   // receives the data as props argument
   return <h1>{props.swapiData.name}</h1>;
 }
-
-export default Index;
 
 // only works in page component files
 export async function getServerSideProps(context) {

@@ -1,7 +1,7 @@
 import axios from "axios";
-require("dotenv").config({path: '../../../.env'});
+require("dotenv").config({ path: "../../../.env" });
 
-async function handler(req, res) {
+export default async function handler(req, res) {
   const url = process.env["FIREBASE"];
 
   // check if the correct method is used
@@ -10,5 +10,3 @@ async function handler(req, res) {
     res.end();
   }
 }
-
-export default handler;

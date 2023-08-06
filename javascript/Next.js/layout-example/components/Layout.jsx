@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-function Layout(props) {
+export default function Layout(props) {
   // create your header and then add your app
   return (
     <>
@@ -14,5 +14,3 @@ function Layout(props) {
     </>
   );
 }
-
-export default Layout;

@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-function Index() {
+export default function Index() {
   return (
     <>
       <h1>Main Index at /</h1>
@@ -8,5 +8,3 @@ function Index() {
     </>
   );
 }
-
-export default Index;

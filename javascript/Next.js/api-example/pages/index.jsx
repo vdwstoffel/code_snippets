@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 
-function Index() {
+export default function Index() {
   const myLabel = useRef();
   const router = useRouter();
 
@@ -26,5 +26,3 @@ function Index() {
     </>
   );
 }
-
-export default Index;
