@@ -39,12 +39,33 @@ docker start <container_id>
 ```
 
 ## Named Volumes
-When container is stopped/remove just run it again with the same volume
+
+Named volumes in Docker provide a way to manage and persist data outside of a container in a flexible and easy-to-use manner
+
 ```bash
-docker run -v feedback:/app/feedback <container_id>
+docker run -v mydata:/app/data my-image
 
 # list all volumes
 docker volumes ls
+```
+
+## Bind Mounts
+
+A bind mount in Docker is a method of attaching a specific directory or file from your host machine's filesystem directly into a Docker container. This allows the container to access and modify the files and directories on the host system as if they were part of the container's own filesystem.
+
+```bash
+docker run -v /path/on/host:/path/in/container my-image
+
+# append an extra :ro to make bind mount readonly
+docker run -v /path/on/host:/path/in/container:ro my-image
+```
+
+### Web Specific
+
+To edit pages you need to create an anonymous mount for node_modules to prevent the copy from, overwriting it
+
+```bash
+docker run -d --rm -p 3000:3000 --name some_name -v /path/on/host:/path/in/container -v full/file/path:/workdir -v /workdir/node_modules my-image
 ```
 
 ### Run commands
@@ -102,11 +123,47 @@ COPY source dest
 
 RUN command                 # Runs when image is build, ex npm install, apt install, pip install
 
-COPY source dest
+COPY source dest    
 
 EXPOSE port
 
+VOLUME ["path/to/file"]     # add if you need anonymous volumes
+
 CMD [ "executable" ]        # runs when container start
+```
+
+## Variables in docker file
+
+```docker
+ENV PORT 80                 # Add env variables
+EXPOSE $PORT
+```
+
+## .env files
+```bash
+docker run --env-file ./.env
+```
+
+## Arguments
+
+```docker
+ARG DEFAULT_PORT=80
+ENV PORT $DEFAULT_PORT
+```
+
+```bash
+# to change the port during build
+docker build -t my-images:my-tag --build-arg DEFAULT_PORT=8080
+```
+## .dockerignore
+
+Files/Folder to ignore
+
+```Dockerfile
+node_module/
+Dockerfile
+.git
+.venv
 ```
 
 # Install Docker
