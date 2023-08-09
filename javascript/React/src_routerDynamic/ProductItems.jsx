@@ -5,7 +5,7 @@ export default function ProductItems() {
 
   return (
     <>
-      <h1>Product: {params.id}</h1>
+      <h1>Product: {params.id}</h1>{" "} {/* params.id must match the dynamic route */}
     </>
   );
 }

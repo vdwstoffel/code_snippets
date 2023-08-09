@@ -532,9 +532,82 @@ export default function ProductItems() {
 
   return (
     <>
-      <h1>Product: {params.id}</h1>
+      <h1>Product: {params.id}</h1> {/* params.id must match the dynamic route */}
     </>
   );
+}
+```
+
+## useNavigate
+
+<figcaption>RootLayout.jsx
+
+```javascript
+import { Outlet } from "react-router-dom";
+
+export default function RootLayout() {
+  return (
+    <>
+      <Outlet /> {/* Display all child pages */}
+    </>
+  );
+}
+```
+
+<figcaption>App.jsx
+
+```javascript
+import "./global.css";
+
+import { createBrowserRouter, RouterProvider } from "react-router-dom"; // npm i react-router-dom
+
+import RootLayout from "./RootLayout";
+import Home from "./Home";
+import Products from "./Products";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootLayout />, // Wrap the root layout and add other pages as children
+    // errorElement: <ErrorPage />, // if page does not exists show a define error page
+    children: [
+      { index: true, element: <Home /> },
+      { path: "/products", element: <Products /> },
+    ],
+  },
+]);
+
+export default function App() {
+  return <RouterProvider router={router} />;
+}
+```
+
+<figcaption>Home.jsx
+
+```javascript
+import { useNavigate } from "react-router-dom";
+
+export default function Home() {
+  const navigate = useNavigate();
+
+  const clickHandler = () => {
+    navigate("/products"); // programmatically go to another page
+  };
+
+  return (
+    <div>
+      <h1>Welcome Home</h1>
+      <button onClick={clickHandler}>Go To Products</button>
+    </div>
+  );
+}
+```
+
+<figcaption>Products.jsx
+
+```javascript
+export default function Products() {
+  return <h1>This is the Products page</h1>;
 }
 ```
 
