@@ -3,7 +3,10 @@
 ## Build an image
 ```bash
 #   -t: tag
-docker build -t <image_name> .
+docker build -t my-image:my-tag .
+
+#   -f: path/to/file
+docker build -f docker/Dockerfile -t my-image:my-tag .
 ```
 ## List all images
 ```bash
@@ -99,11 +102,42 @@ docker rm <container_id>
 
 # Automatically delete container after exit
 docker run --rm <container_id>
+
+# Remove all unused containers
+docker container prune
 ```
 
 ## Copying to/from a container
 ```bash
 docker cp <container_id>:/path/to/file path/on/local/disk
+```
+
+# Networks
+```bash
+# First create a network
+docker network create my-example
+
+# Then run your images with --network
+docker run --network my-example my-images:my-tag
+```
+
+## Node/MongoDB example
+```javascript
+// connect to mongo using the container name
+const mongo = "mongodb://my-app-mongo:27017/dbName";
+```
+```bash
+# run mongo container. Name should match the connection in the node app
+docker run -d --name my-app-mongo --network node-mongo-example mongo:latest
+
+# run node app
+docker run -d -p 3000:3000 --network node-mongo-example my-image:my-tag
+```
+
+## Connect to a container on your host machine
+Ex .When connecting a container to a local db
+```bash
+docker run -d -p 3000:3000 --network="host" my-image:my-tag
 ```
 
 # Docker Logs
