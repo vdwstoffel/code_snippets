@@ -53,7 +53,7 @@ sudo systemctl restart mongod
 mongosh
 ```
 
-## using mongo
+## Using mongo
 
 ```bash
 # open mondodb terminal
@@ -68,4 +68,53 @@ use <database_name>
 
 # insert
 > db.user.insert({name: 'Ada Lovelace', age: 205})
+```
+
+# PostgreSQL
+## Installing postgresql
+```bash
+#!/usr/bin/bash
+
+# Setup script for postgresql
+sudo apt update -y 
+sudo apt install postgresql postgresql-contrib -y 
+sudo systemctl start postgresql.service
+```
+
+## Using postgresql
+```bash
+# Open shell
+sudo -i -u postgres
+
+# Enter console
+psql
+```
+
+## Create Super User
+```bash
+# Open shell
+sudo -i -u postgres
+psql
+CREATE ROLE mysuperuser2 WITH SUPERUSER CREATEDB CREATEROLE LOGIN ENCRYPTED PASSWORD 'mysuperpass2';
+# List all the users
+\du
+```
+
+## Create New Database
+```bash
+# Open shell
+sudo -i -u postgres
+
+psql
+
+CREATE DATABASE new_test;
+# list all db
+# \list
+
+DROP DATABASE new_test; # remove the database
+```
+
+# Alias Python
+```bash
+sudo apt-get install python-is-python3
 ```
