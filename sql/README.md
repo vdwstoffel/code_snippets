@@ -4,6 +4,12 @@ CREATE DATABASE code_snippets;
 ```
 
 # Create Table
+
+To auto increase the primary key
+1. MySQL: `AUTO_INCREMENT`
+2. PostgreSQL: `SERIAL`
+3. SQLite3: `AUTOINCREMENT`
+   
 ```sql
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
