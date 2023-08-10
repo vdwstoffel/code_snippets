@@ -692,6 +692,154 @@ export default function App() {
 }
 ```
 
+## useRouterError
+Create a custom error component and send error to it. Whenever an error occurs react will find the closest errorElement
+
+<figcaption>App.jsx
+
+```javascript
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import Content, { loader as eventLoader } from "./Content"; // import the loader function
+import Error from "./Error";
+
+const router = createBrowserRouter([
+  {
+    path: "/content",
+    element: <Content />,
+    loader: eventLoader,
+    errorElement: <Error />,
+  }, //add default error handler
+]);
+
+export default function App() {
+  return <RouterProvider router={router} />;
+}
+```
+
+<figcaption>Content.jsx
+
+```javascript
+import { useLoaderData, json } from "react-router-dom";
+
+export default function Content() {
+  const data = useLoaderData(); // Gain access to the data from the api call
+
+  return <h1>{data.name}</h1>;
+}
+
+/*
+ * Loader function, declare as a export function with the component it will use
+ * and export it to the routes
+ */
+export async function loader() {
+  const response = await fetch("https://swapi.dev/api/wrong_peope/1/"); // notice wrong api url
+  if (!response.ok) {
+    throw json({ message: "Could not fetch data" }, { status: 400 }); // creates a response object
+  } // will direct to the error page
+  return await response;
+}
+```
+
+<figcaption>Error.jsx
+
+```javascript
+import { useRouteError } from "react-router-dom";
+
+export default function Error() {
+  const error = useRouteError(); // gain access to thew error object
+
+  return (
+    <>
+      <h1>{error.status}</h1>
+      <h2>{error.data.message}</h2>
+    </>
+  );
+}
+```
+
+## useSearchParam
+The useSearchParams hook is used in React Router to access and manage the query parameters of the current URL, allowing components to read and update the search parameters in the browser's address bar.
+
+<figcaption>App.jsx
+
+```javascript
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import Content from "./Content";
+
+const router = createBrowserRouter([
+  { path: "/content", element: <Content /> },
+]);
+
+export default function App() {
+  return <RouterProvider router={router} />;
+}
+```
+
+<figcaption>Content.jsx
+
+```javascript
+import { useSearchParams } from "react-router-dom";
+
+export default function Products() {
+  // get everything in the params ex localhost/products?bread
+  let [searchParams, setSearchParams] = useSearchParams();
+
+  return (
+    <div>
+      <h1>{searchParams}</h1>
+    </div>
+  );
+}
+```
+
+## userRouterLoaderData
+This hook makes the data at any currently rendered route available anywhere in the tree
+
+<figcaption>App.jsx
+
+```javascript
+import { createBrowserRouter, RouterProvider } from "react-router-dom"; // npm i react-router-dom
+
+import User from "./User";
+import { getUsername } from "./getUsername"; // custom function
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <User />,
+    loader: getUsername, // loader function to share data with other components
+    id: "root", // set a id to refer to the data
+    children: [{ index: true, element: <User /> }],
+  },
+]);
+
+export default function App() {
+  return <RouterProvider router={router} />;
+}
+```
+
+<figcaption>User.jsx
+
+```javascript
+import { useRouteLoaderData } from "react-router-dom";
+
+export default function User() {
+  const user = useRouteLoaderData("root"); // id set in the app route definition
+
+  return <h1>Hello: {user}</h1>;
+}
+```
+
+<figcaption>getUsername.js
+
+```javascript
+export function getUsername() {
+  return "Stoffel";
+}
+```
+
 # Vite: Change Default Port
 
 <figcaption>vite.config.js
