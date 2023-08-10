@@ -611,6 +611,87 @@ export default function Products() {
 }
 ```
 
+## useLoaderData
+Load the data before the page loads and pass the data to the page
+
+<figcaption>App.jsx
+
+```javascript
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import Content, { loader as eventLoader } from "./Content"; // import the loader function
+
+const router = createBrowserRouter([
+  { path: "/", element: <Content />, loader: eventLoader }, // call the loader function before the page loads
+]);
+
+export default function App() {
+  return <RouterProvider router={router} />;
+}
+```
+
+<figcaption>Content.jsx
+
+```javascript
+import { useLoaderData } from "react-router-dom";
+
+export default function Content() {
+  const data = useLoaderData(); // Gain access to the data from the api call
+
+  return <h1>{data.name}</h1>;
+}
+
+/*
+ * Loader function, declare as a export function with the component it will use
+ * and export it to the routes
+ */
+export async function loader() {
+  const response = await fetch("https://swapi.dev/api/people/1/");
+  return await response;
+}
+```
+
+### useLoaderData Dynamic Routing
+
+<figcaption>Content.jsx
+
+```javascript
+import { useLoaderData } from "react-router-dom";
+
+export default function Content() {
+  const data = useLoaderData(); // Gain access to the data from the api call
+
+  return <h1>{data.name}</h1>;
+}
+
+/*
+ * Loader function, declare as a export function with the component it will use
+ * and export it to the routes
+ */
+export async function loader({ request, params }) {
+  const num = params.number; // should match the dynamic param from the path ex.  path: "/:number"
+  const response = await fetch(`https://swapi.dev/api/people/${num}/`);
+  return await response;
+}
+```
+<figcaption>App.jsx
+
+```javascript
+import "./global.css";
+
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import Content, { loader as eventLoader } from "./Content"; // import the loader function
+
+const router = createBrowserRouter([
+  { path: "/:number", element: <Content />, loader: eventLoader }, // call the loader function before the page loads
+]);
+
+export default function App() {
+  return <RouterProvider router={router} />;
+}
+```
+
 # Vite: Change Default Port
 
 <figcaption>vite.config.js
