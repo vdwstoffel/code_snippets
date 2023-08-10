@@ -17,7 +17,7 @@ npm run dev
 ## Functional Components
 
 ```javascript
-import './global.css'
+import "./global.css";
 
 export default function App() {
   return (
@@ -61,6 +61,27 @@ class setStateExample extends React.Component {
 export default setStateExample;
 ```
 
+# Fragments
+
+```javascript
+import from "react";
+
+/*
+Instead of wrapping everything in a div and creating a lot of divs
+instead wrap your return in a Fragment which just return the props.children.
+This will avoid creating a lot of divs
+*/
+
+export default function FragmentExample() {
+  return (
+    <Fragment>
+      <h1>Hello</h1>
+      <h1>World</h1>
+    </Fragment>
+  );
+}
+```
+
 # Props
 
 <figcaption>PropsExample.jsx
@@ -90,10 +111,8 @@ export default function App() {
 
 ```javascript
 export default function App() {
-  const day = false
-  return (<h1>
-    {day ? "It is day" : "it is night"}
-  </h1>)
+  const day = false;
+  return <h1>{day ? "It is day" : "it is night"}</h1>;
 }
 ```
 
@@ -299,11 +318,10 @@ export default function App() {
 <figcaption>main.jsx
 
 ```javascript
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import { AuthContextProvider } from './context/auth-context.jsx'
-
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+import { AuthContextProvider } from "./context/auth-context.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -532,7 +550,8 @@ export default function ProductItems() {
 
   return (
     <>
-      <h1>Product: {params.id}</h1> {/* params.id must match the dynamic route */}
+      <h1>Product: {params.id}</h1>{" "}
+      {/* params.id must match the dynamic route */}
     </>
   );
 }
@@ -612,6 +631,7 @@ export default function Products() {
 ```
 
 ## useLoaderData
+
 Load the data before the page loads and pass the data to the page
 
 <figcaption>App.jsx
@@ -674,6 +694,7 @@ export async function loader({ request, params }) {
   return await response;
 }
 ```
+
 <figcaption>App.jsx
 
 ```javascript
@@ -693,6 +714,7 @@ export default function App() {
 ```
 
 ## useRouterError
+
 Create a custom error component and send error to it. Whenever an error occurs react will find the closest errorElement
 
 <figcaption>App.jsx
@@ -759,6 +781,7 @@ export default function Error() {
 ```
 
 ## useSearchParam
+
 The useSearchParams hook is used in React Router to access and manage the query parameters of the current URL, allowing components to read and update the search parameters in the browser's address bar.
 
 <figcaption>App.jsx
@@ -795,6 +818,7 @@ export default function Products() {
 ```
 
 ## userRouterLoaderData
+
 This hook makes the data at any currently rendered route available anywhere in the tree
 
 <figcaption>App.jsx
@@ -840,19 +864,772 @@ export function getUsername() {
 }
 ```
 
+## Router Forms
+
+<figcaption>App.jsx
+
+```javascript
+import { createBrowserRouter, RouterProvider } from "react-router-dom"; // npm i react-router-dom
+
+import UserForm, { action as submitAction } from "./UserForm";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <UserForm />,
+    action: submitAction, // action to be performed upon submit click
+  },
+]);
+
+export default function App() {
+  return <RouterProvider router={router} />;
+}
+```
+
+<figcaption>UserForm.jsx
+
+```javascript
+import { Form, redirect } from "react-router-dom";
+
+export default function UserForm() {
+  return (
+    <Form method="POST">
+      <h1>Hello</h1>
+      <label>Name</label>
+      <input type="text" id="name" name="name" />{" "}
+      {/* name will be used to identify in the action*/}
+      <button>Submit</button>
+    </Form>
+  );
+}
+
+// action function to capture event data
+export async function action({ request, params }) {
+  const data = await request.formData();
+  const userData = {
+    username: data.get("name"), //the name attr from the input
+  };
+
+  console.log(userData);
+  // post request with data
+
+  return redirect("/"); //redirect to any defined route
+}
+```
+
+## Delete Request
+
+<figcaption>App.jsx
+
+```javascript
+import { createBrowserRouter, RouterProvider } from "react-router-dom"; // npm i react-router-dom
+
+import UserForm, { action as submitAction } from "./UserForm";
+
+const router = createBrowserRouter([
+  {
+    path: "/:event",
+    element: <UserForm />,
+    action: submitAction, // action to be performed upon submit click
+  },
+]);
+
+export default function App() {
+  return <RouterProvider router={router} />;
+}
+```
+
+<figcaption>UserForm.jsx
+
+```javascript
+import { redirect, useSubmit } from "react-router-dom";
+
+export default function UserForm() {
+  const submit = useSubmit();
+
+  const deleteHandler = () => {
+    submit(null, { method: "delete" }); // define the method to be used
+  };
+
+  return (
+    <>
+      <button onClick={deleteHandler}>Delete</button>{" "}
+      {/* Not part of the form */}
+    </>
+  );
+}
+
+// action function to capture event data
+export async function action({ request, params }) {
+  const data = await params.event; // should match the dynamic param in App ex path: "/:event"
+  console.log(request.method); // get access to the method
+  // post request with data
+
+  return redirect("/event"); //redirect to any defiend route
+}
+```
+
+# Forms
+
+<figcaption>App.jsx
+
+```javascript
+import { useState } from "react";
+
+import useFormInput from "./useFormInput";
+
+export default function App() {
+  const [username, handleUsernameSubmit, usernameReset] = useFormInput(); // Custom hook to manage form input
+  const [email, handleEmailSubmit, emailReset] = useFormInput();
+
+  const [name, setName] = useState(""); // useState hook to manage state
+  const [mail, setMail] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setName(username); // set the state to the form value
+    setMail(email);
+    usernameReset(); // reset values
+    emailReset();
+
+    // API call
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <h1>Hello {name}</h1>
+      <h1>Email {mail}</h1>
+      <label>Name:</label>
+      <input value={username || ""} onChange={handleUsernameSubmit} />
+      <label>Email:</label>
+      <input value={email || ""} onChange={handleEmailSubmit} />
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+```
+
+<figcaption>useFormInput.jsx
+
+```javascript
+import { useState } from "react";
+
+export default function useFormInput(initialValue) {
+  // Custom hook to manage form input
+  const [value, setValue] = useState(initialValue);
+
+  const handleChange = (e) => {
+    setValue(e.target.value);
+  };
+
+  const reset = () => {
+    setValue("");
+  };
+
+  return [value, handleChange, reset];
+}
+```
+
+## Frontend Form Validation
+
+<figcaption>App.jsx
+
+```javascript
+import { useState } from "react";
+import style from "./App.module.css";
+
+export default function App() {
+  const [name, setName] = useState(""); // State for the name form input
+  const nameIsValid = name.length > 0; // Check is name meets the requirement
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    if (!name) {
+      console.log("Name is Empty");
+      // do something is form is bad
+      return;
+    }
+    // do something is form is good
+    window.location.href = "https://google.com";
+  };
+
+  const updateInput = (e) => {
+    setName(e.target.value);
+  };
+
+  return (
+    <form>
+      <h1>Hello</h1>
+      <label>Name:</label>
+      <input
+        value={name}
+        onChange={updateInput}
+        className={!nameIsValid ? style.error : null}
+      />
+      {!nameIsValid && <p>Name is required</p>}
+      <button type="submit" onClick={submitHandler}>
+        Submit
+      </button>
+    </form>
+  );
+}
+```
+
+<figcaption>App.module.css
+
+```css
+.error {
+  border-color: red;
+}
+```
+
+# Passing Data to Parent Prop
+
+<figcaption>App.jsx
+
+```javascript
+import { useState } from "react";
+
+import Names from "./Names";
+
+export default function App() {
+  const [names, setNames] = useState([]);
+
+  const addName = (name) => {
+    setNames([...names, name]);
+  };
+
+  return (
+    <div>
+      <h1>List of Names</h1>
+      <ul>
+        {names.map((name, index) => (
+          <li key={index}>{name}</li>
+        ))}
+      </ul>
+      <Names addNameFunction={addName} />
+    </div>
+  );
+}
+```
+
+<figcaption>Names.jsx
+
+```javascript
+import { useState } from "react";
+
+export default function Names(props) {
+  const { addNameFunction } = props;
+  const [username, setUsername] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault(); // Prevent the page from refreshing
+    addNameFunction(username); // Call the parent function
+    setUsername(""); // Empty the input after submission
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label htmlFor="name">Name</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+      />
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+```
+
+# Portals
+
+<figcaption>App.jsx
+
+```javascript
+import ReactDOM from "react-dom";
+
+/*
+By creating a id in the .html you can move the portal to that id instead of the root
+This can move it to the top to make semantics better
+*/
+
+export default function App() {
+  // Pass the element and the id as arguments
+  return ReactDOM.createPortal(
+    <h1>This is a Portal at the top of the DOM</h1>,
+    document.getElementById("portalExample")
+  );
+}
+```
+
+<figcaption>index.html
+
+```html
+<body>
+  <div id="portalExample"></div>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+```
+
+# React Redux
+
+```bash
+npm i @reduxjs/toolkit
+npm i react-redux
+```
+
+├── App.jsx
+├── main.jsx
+└── store
+├── counterSlice.jsx
+└── store.jsx
+
+````
+
+<figcaption>main.jsx
+
+```javascript
+import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux"; // npm i react-redux
+
+import App from "./App";
+import store from "./store/store"; // import the redux store
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  // assign the store value
+  <Provider store={store}>
+    <App />
+  </Provider>
+);
+````
+
+<figcaption>App.jsx
+
+```javascript
+import { useSelector, useDispatch } from "react-redux";
+import { counterAction } from "./store/counterSlice";
+
+export default function App() {
+  const dispatch = useDispatch();
+  const counter = useSelector((state) => state.counterSlicer.counter); // state.configureStoreExport.stateItem
+  const showCounter = useSelector((state) => state.counterSlicer.showCounter);
+
+  const increaseHandler = () => {
+    dispatch(counterAction.increment());
+  };
+
+  const decreaseHandler = () => {
+    dispatch(counterAction.decrement({ amount: 2 })); // specify a payload by name
+  };
+
+  const toggleCounter = () => {
+    dispatch(counterAction.toggleCounter(!showCounter));
+  };
+
+  return (
+    <div>
+      <h1>Redux Example</h1>
+      {showCounter ? <h2>Counter : {counter} </h2> : null}
+      <button onClick={increaseHandler}>Increase</button>
+      <button onClick={decreaseHandler}>Decrease</button>
+      <button onClick={toggleCounter}>Toggle Show</button>
+    </div>
+  );
+}
+```
+
+<figcaption>/store/counterslice.jsx
+
+```javascript
+import { createSlice } from "@reduxjs/toolkit";
+
+const initialState = {
+  counter: 0,
+  showCounter: true,
+};
+
+const counterSlice = createSlice({
+  name: "counterSlice", // identifying alias
+  initialState: initialState,
+  // Set reducer actions
+  reducers: {
+    increment(state) {
+      state.counter++;
+    },
+    decrement(state, action) {
+      // passing a payload. will be dispatched as .func({amount: 2})
+      state.counter = state.counter - action.payload.amount;
+    },
+    toggleCounter(state) {
+      state.showCounter = !state.showCounter;
+    },
+  },
+});
+
+export const counterAction = counterSlice.actions; // export to component
+export default counterSlice; // export to store
+```
+
+<figcaption>/store/store.jsx
+
+```javascript
+import { configureStore } from "@reduxjs/toolkit";
+
+import counterSlice from "./counterSlice";
+
+const store = configureStore({
+  reducer: { counterSlicer: counterSlice.reducer },
+});
+
+export default store; // will be imported in main as a Wrapper for the app
+
+/*
+ * When you have multiple stores add it to the configure store's reducer in key/value pairs ex.
+ *   const store = configureStore({
+ *       reducer: { counterSlicer: counterSlice.reducer, auth: authSlice.reducer },
+ *   });
+ */
+```
+
+# Scoping CSS
+
+<figcaption>App.jsx
+
+```javascript
+import { useState } from "react";
+
+// Name the .css file as a module and import as styles
+import styles from "./App.module.css";
+
+export default function App() {
+  const [clicked, setClicked] = useState(false);
+
+  const clickHandler = () => {
+    setClicked(!clicked);
+  };
+
+  /*
+  Call the class name from the styles module
+  Dynamically add the class 'dynamic-bg' based on weather or not the state is clicked
+  */
+  return (
+    <div>
+      <h1 className={styles.heading} onClick={clickHandler}>
+        Css Modules Example
+      </h1>
+      <div className={clicked && styles["dynamic-bg"]} onClick={clickHandler}>
+        Click Me
+      </div>
+      <h2 className={`${styles.heading} ${clicked && styles["dynamic-bg"]}`}>
+        Combined
+      </h2>
+    </div>
+  );
+}
+```
+
+<figcaption>App.module.css
+
+```css
+.heading {
+  color: Black;
+  font-size: 4em;
+}
+
+.heading:hover {
+  color: red;
+}
+
+.dynamic-bg {
+  background-color: yellowgreen;
+}
+
+/* Media queries works the same way */
+@media (max-width: 1000px) {
+  .dynamic-bg {
+    background-color: red;
+  }
+}
+```
+
+# Authentication with express example
+
+## Express
+
+```javascript
+/*
+npm i express
+npm i jsonwebtoken
+npm i dotenv
+npm i cors
+*/
+"use strict";
+
+const express = require("express");
+const app = express();
+require("dotenv").config({ path: ".env" });
+const jwt = require("jsonwebtoken");
+const cors = require("cors");
+
+app.use(cors());
+app.use(express.urlencoded({ extended: true })); //make sure a form can send data
+
+const JWT_SECRET = "xxxx";
+
+app.post("/signup", async (req, res) => {
+  const { username } = req.body;
+  // add database logic to create user/login user
+  const token = jwt.sign({ username: username, iat: Date.now() }, JWT_SECRET, {
+    expiresIn: 1000 * 60 * 30, // set expiry to 30 min
+  });
+  res.send({ token });
+});
+
+app.get("/viewToken", async (req, res) => {
+  /*
+   * The token will be sent as Bearer xxxx, so remove the Bearer + <space> part
+   */
+  const token = req.headers.authorization.replace("Bearer ", "");
+  const decodedToken = jwt.verify(token, JWT_SECRET);
+
+  // Match the token expiry date to the current date
+  if (decodedToken.exp < Date.now()) {
+    console.log("Token Expired");
+  }
+
+  res.send(decodedToken);
+});
+
+// Start the server
+const port = process.env.PORT || 8000;
+app.listen(port, () => console.log(`http://localhost:${port}`));
+```
+
+## React
+
+<figcaption>App.jsx
+
+```javascript
+import { createBrowserRouter, RouterProvider } from "react-router-dom"; // npm i react-router-dom
+
+import RootLayout from "./RootLayout";
+import Home, { action as authAction } from "./Signup"; // import the action from the signup page
+import Secret from "./Secret";
+import ViewToken, { loader as getTokenLoader } from "./ViewToken";
+import { checkAuthLoader, getAuthToken, logout } from "./auth";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootLayout />, // Wrap the root layout and add other pages as children
+    id: "root", // id to identify the data from the loader function
+    loader: getAuthToken, // get the token on every page load
+    children: [
+      { index: true, element: <Home />, action: authAction }, // sumbit the form action
+      { path: "/secret", element: <Secret />, loader: checkAuthLoader }, // will check on every new component
+      { path: "/viewToken", element: <ViewToken />, loader: getTokenLoader },
+      { path: "/logout", loader: logout }, // triggers  logout function to remove token
+    ],
+  },
+]);
+
+export default function App() {
+  return <RouterProvider router={router} />;
+}
+```
+
+<figcaption>Signup.jsx
+
+```javascript
+import { Form, redirect } from "react-router-dom";
+import axios from "axios";
+
+export default function Signup() {
+  return (
+    <Form method="POST">
+      <input type="text" id="username" name="username" />
+      {/* name will be used to identify */}
+      <button>Submit</button>
+    </Form>
+  );
+}
+
+export async function action({ request }) {
+  /*
+  Action to be performed once the form is submitted
+  add the action to the route as an action ex action: authAction
+  */
+  const urlParams = new URL(request.url).searchParams; // get any url param queries
+  const paramQueries = urlParams.get("query");
+
+  // Get the information from the form submitted
+  const data = await request.formData();
+  const username = data.get("username"); //taken from the input name
+
+  // Make api call the back end
+  const response = await axios.post(
+    "http://localhost:8000/signup",
+    {
+      username: username,
+    },
+    {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    }
+  );
+  const resData = response.data;
+  localStorage.setItem("token", resData.token); // take the token from response and save it to local storage
+
+  return redirect("/secret");
+}
+```
+
+<figcaption>auth.js
+
+```javascript
+import { redirect } from "react-router-dom";
+
+export function getAuthToken() {
+  /**
+   * Global loader to check on every component if the user has a valid token
+   * Add the to route path
+   */
+  const token = localStorage.getItem("token");
+  return token;
+}
+
+export function checkAuthLoader() {
+  /**
+   * Use to protect routes. IF there is no token present reroute them away
+   */
+  const token = getAuthToken();
+
+  if (!token) {
+    return redirect("/");
+  }
+
+  return null;
+}
+
+export function logout() {
+  /**
+   * Function that will remove the token once the user logs out
+   */
+  localStorage.removeItem("token");
+
+  return redirect("/");
+}
+```
+
+<figcaption>Secret.jsx
+
+```javascript
+import { Link, useRouteLoaderData } from "react-router-dom";
+
+export default function Secret() {
+  const user = useRouteLoaderData("root"); // id set in the app route definition. Get access to the data from the loader
+  return (
+    <>
+      <h1>This is a secret</h1>
+      <h2>{user}</h2>
+      <Link to="/viewToken">View Token</Link>
+    </>
+  );
+}
+```
+
+<figcaption>ViewToken.jsx
+
+```javascript
+import { useLoaderData } from "react-router-dom";
+import axios from "axios";
+import { getAuthToken } from "./auth";
+
+export default function ViewToken() {
+  const data = useLoaderData();
+
+  // Convert unix time to normal timestamp
+  const convertTime = (unixTime) => {
+    const date = new Date(unixTime);
+    return (
+      date.getDate() +
+      "/" +
+      date.getMonth() +
+      "/" +
+      date.getFullYear() +
+      " " +
+      date.getHours() +
+      ":" +
+      date.getMinutes() +
+      ":" +
+      date.getSeconds()
+    );
+  };
+
+  // check if the token is expired
+  if (data.data.exp < Date.now()) {
+    console.log("Token Expired");
+    localStorage.removeItem("token");
+  }
+
+  return (
+    <>
+      <h1>Username: {data.data.username}</h1>
+      <h1>Issued At: {convertTime(data.data.iat)}</h1>
+      <h1>Expires: {convertTime(data.data.exp)}</h1>
+    </>
+  );
+}
+
+export async function loader() {
+  const token = getAuthToken();
+  const response = await axios.get("http://localhost:8000/viewToken", {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
+    },
+  });
+  return response;
+}
+```
+
 # Vite: Change Default Port
 
 <figcaption>vite.config.js
 
 ```javascript
 // vite.config.js
-import { defineConfig } from 'vite'
+import { defineConfig } from "vite";
 
 export default defineConfig({
   server: {
     port: 8000,
   },
-})
+});
+```
+
+# Various
+
+## Timeout on input changes
+
+```javascript
+useEffect(() => {
+  /*
+  Instead of checking each button press, check after 1 sec of inactivity
+  If another button is pressed the current timer will reset 
+  */
+  const currentTimer = setTimeout(() => {
+    setFormIsValid(
+      enteredEmail.includes("@") && enteredPassword.trim().length > 6
+    );
+  }, 1000);
+});
 ```
 
 # Extensions
