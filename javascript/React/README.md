@@ -1182,13 +1182,13 @@ npm i @reduxjs/toolkit
 npm i react-redux
 ```
 
+```
 ├── App.jsx
 ├── main.jsx
 └── store
 ├── counterSlice.jsx
 └── store.jsx
-
-````
+```
 
 <figcaption>main.jsx
 
