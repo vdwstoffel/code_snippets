@@ -1632,6 +1632,16 @@ useEffect(() => {
 });
 ```
 
+## Show current link page
+
+```javascript
+<NavLink
+    to="/"
+    className={({ isActive }) => (isActive ? style.active : undefined)} // className takes an function
+    end // Match only exact path name
+>
+```
+
 # Extensions
 
 [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
