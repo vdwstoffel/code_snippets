@@ -51,7 +51,7 @@ from selenium.webdriver.common.keys import Keys
 driver.find_element().send_keys(Keys.RETURN)
 ```
 
-[Webdriver Manager](https://github.com/SergeyPirogov/webdriver_manager)
+# [Webdriver Manager](https://github.com/SergeyPirogov/webdriver_manager)
 Auto download webdrivers
 
 ## Firefox
