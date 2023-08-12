@@ -1,6 +1,7 @@
 # Images
 
 ## Build an image
+
 ```bash
 #   -t: tag
 docker build -t my-image:my-tag .
@@ -8,12 +9,15 @@ docker build -t my-image:my-tag .
 #   -f: path/to/file
 docker build -f docker/Dockerfile -t my-image:my-tag .
 ```
+
 ## List all images
+
 ```bash
 docker images
 ```
 
 ## Delete an image
+
 ```bash
 docker rmi <image_name>
 
@@ -22,6 +26,7 @@ docker image prune -a
 ```
 
 ## Push/Pull images to/from dockerhub
+
 ```bash
 docker push <image_name>
 docker pull <image_name>
@@ -30,6 +35,7 @@ docker pull <image_name>
 # Containers
 
 ## Run Container
+
 ```bash
 docker run <image_name>
 
@@ -37,7 +43,7 @@ docker run <image_name>
 # container port is same as app
 docker run -d -p <host_port>:<container_port> --name docker_example <image_name>
 
-# Restart a container 
+# Restart a container
 docker start <container_id>
 ```
 
@@ -65,13 +71,18 @@ docker run -v /path/on/host:/path/in/container:ro my-image
 
 ### Web Specific
 
-To edit pages you need to create an anonymous mount for node_modules to prevent the copy from, overwriting it
+`-v /path/on/host:/path/in/container` : Where to store generate files
+
+`-v full/file/path:/workdir_in_dockerfile` : This allows local file changes to reflect in the container
+
+`-v /workdir/node_modules` : node_modules to prevent the copy from, overwriting it
 
 ```bash
 docker run -d --rm -p 3000:3000 --name some_name -v /path/on/host:/path/in/container -v full/file/path:/workdir -v /workdir/node_modules my-image
 ```
 
 ### Run commands
+
 ```bash
 #   -p: port
 #   -d: detach  (run in background)
@@ -83,12 +94,14 @@ docker run -d --rm -p 3000:3000 --name some_name -v /path/on/host:/path/in/conta
 ```
 
 ## Stop Container
+
 ```bash
 docker stop <container_id>
 docker stop <container_name>
 ```
 
 ## List running containers
+
 ```bash
 docker ps
 
@@ -97,6 +110,7 @@ docker ps -a
 ```
 
 ## Delete Container
+
 ```bash
 docker rm <container_id>
 
@@ -108,6 +122,7 @@ docker container prune
 ```
 
 ## Copying to/from a container
+
 ```bash
 docker cp <container_id>:/path/to/file path/on/local/disk
 ```
@@ -125,10 +140,12 @@ docker run --network my-example my-images:my-tag
 ```
 
 ## Node/MongoDB example
+
 ```javascript
 // connect to mongo using the container name
 const mongo = "mongodb://my-app-mongo:27017/dbName";
 ```
+
 ```bash
 # run mongo container. Name should match the connection in the node app
 docker run -d --name my-app-mongo --network node-mongo-example mongo:latest
@@ -137,14 +154,32 @@ docker run -d --name my-app-mongo --network node-mongo-example mongo:latest
 docker run -d -p 3000:3000 --network node-mongo-example my-image:my-tag
 ```
 
+## Express/React example
+
+<figcaption>package.json
+
+```json
+"proxy": "http://container-name:<express-port>",
+```
+
+<figcaption>App.jsx
+
+```javascript
+const response = await fetch("http://localhost:<react-port>/goals");
+```
+
 ## Connect to a container on your host machine
+
 Ex .When connecting a container to a local db
+
 ```bash
 docker run -d -p 3000:3000 --network="host" my-image:my-tag
 ```
 
 # Docker Logs
+
 The view and debug containers
+
 ```bash
 docker logs <container_name>
 ```
@@ -160,7 +195,7 @@ COPY source dest
 
 RUN command                 # Runs when image is build, ex npm install, apt install, pip install
 
-COPY source dest    
+COPY source dest
 
 EXPOSE port
 
@@ -177,6 +212,7 @@ EXPOSE $PORT
 ```
 
 ## .env files
+
 ```bash
 docker run --env-file ./.env
 ```
@@ -192,6 +228,7 @@ ENV PORT $DEFAULT_PORT
 # to change the port during build
 docker build -t my-images:my-tag --build-arg DEFAULT_PORT=8080
 ```
+
 ## .dockerignore
 
 Files/Folder to ignore
