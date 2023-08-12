@@ -210,6 +210,11 @@ CMD [ "executable" ]        # runs when container start
 ENV PORT 80                 # Add env variables
 EXPOSE $PORT
 ```
+## Env via cli
+
+```bash
+docker run -d -e MONGO_INITDB_ROOT_USERNAME=stoffel -e MONGO_INITDB_ROOT_PASSWORD=secret mongo:latest
+```
 
 ## .env files
 
