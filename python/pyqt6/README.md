@@ -24,6 +24,12 @@ if __name__ == '__main__':
     sys.exit(app.exec())
 ```
 
+<div style="text-align: center;">
+
+![mainWindowShell](images/mainWindowShell.png)
+
+</div>
+
 # Main Window with Geometry
 
 ```python
