@@ -6,12 +6,13 @@ class QLabelExample(QMainWindow):
     def __init__(self):
 
         super().__init__()
-        self.setWindowTitle("Menu Example")
-        self.setFixedWidth(200)
+        self.setWindowTitle("Label Example")
+        self.setFixedWidth(300)
         self.setFixedHeight(100)
 
         self.label = QLabel("This is a label", self)    # create the label
-        self.label.setMaximumWidth(200)                 # set max width
+        self.label.setMaximumWidth(300)                 # set max width
+        self.label.setFixedWidth(250)                   # Set fixed width
         print(self.label.text())                        # get the label  text
         self.label.setText("Label Value Changed")       # change the label text
 

@@ -24,12 +24,6 @@ if __name__ == '__main__':
     sys.exit(app.exec())
 ```
 
-<div style="text-align: center;">
-
-![mainWindowShell](images/mainWindowShell.png)
-
-</div>
-
 # Main Window with Geometry
 
 ```python
@@ -90,6 +84,12 @@ if __name__ == '__main__':
     sys.exit(app.exec())
 ```
 
+<div style="text-align: center;">
+
+![pushButton](images/pushButton.png)
+
+</div>
+
 # Label
 
 ```python
@@ -117,6 +117,12 @@ if __name__ == '__main__':
     sys.exit(app.exec())
 ```
 
+<div style="text-align: center;">
+
+![label](images/label.png)
+
+</div>
+
 # TextEdit
 ```python
 from PyQt6.QtWidgets import QApplication, QMainWindow, QTextEdit
@@ -127,13 +133,13 @@ class TextEditExample(QMainWindow):
     def __init__(self):
 
         super().__init__()
-        self.setWindowTitle("Menu Example")
+        self.setWindowTitle("Text Edit Example")
         self.setFixedWidth(500)
         self.setFixedHeight(500)
 
-        self.text_edit = QTextEdit("", self)    # Create a Text edit with blank vale
+        self.text_edit = QTextEdit("", self)    # Create a Text edit with blank value
         self.text_edit.setFixedSize(400, 400)   # Set the size
-        self.text_edit.setText("newValue")      # Preset a value
+        self.text_edit.setText("preset text")   # Preset a value
         self.text_edit.setReadOnly(False)       # Set editable to True/False
         print(self.text_edit.toPlainText())     # Get the
 
@@ -144,6 +150,12 @@ if __name__ == '__main__':
     window.show()
     sys.exit(app.exec())
 ```
+
+<div style="text-align: center;">
+
+![textEdit](images/textEdit.png)
+
+</div>
 
 # ComboBox
 
@@ -171,6 +183,15 @@ if __name__ == '__main__':
     sys.exit(app.exec())
 ```
 
+<div style="display: flex; flex-direction: colum; justify-content: center;">
+
+![comboBox](images/comboBox.png)
+
+![comboBoxExpanded](images/comboBoxExpanded.png)
+
+</div>
+
+
 # LineEdit
 
 ```python
@@ -182,9 +203,9 @@ class MainWindowShell(QMainWindow):
     def __init__(self):
 
         super().__init__()
-        self.setWindowTitle("Menu Example")
+        self.setWindowTitle("Line Edit Example")
         self.setFixedWidth(300)
-        self.setFixedHeight(300)
+        self.setFixedHeight(100)
 
         self.enter_text = QLineEdit(self)
         self.enter_text.setFixedWidth(150)
@@ -198,6 +219,12 @@ if __name__ == '__main__':
     window.show()
     sys.exit(app.exec())
 ```
+
+<div style="text-align: center;">
+
+![lineEdit](images/lineEdit.png)
+
+</div>
 
 # ToolBar
 ```python
@@ -229,6 +256,12 @@ if __name__ == '__main__':
     sys.exit(app.exec())
 ```
 
+<div style="text-align: center;">
+
+![toolbar](images/toolbar.png)
+
+</div>
+
 # Status Bar
 
 ```python
@@ -254,6 +287,12 @@ if __name__ == '__main__':
     window.show()
     sys.exit(app.exec())
 ```
+
+<div style="text-align: center;">
+
+![statusbar](images/statusbar.png)
+
+</div>
 
 # Menu Bar
 
@@ -287,6 +326,12 @@ if __name__ == '__main__':
     window.show()
     sys.exit(app.exec())
 ```
+
+<div style="text-align: center;">
+
+![menubar](images/menubar.png)
+
+</div>
 
 # Message Box (pop up)
 
@@ -322,6 +367,14 @@ if __name__ == '__main__':
     window.show()
     sys.exit(app.exec())
 ```
+
+<div style="display: flex; flex-direction: colum; justify-content: center;">
+
+![messageBox](images/messageBox.png)
+
+![messageBoxClicked](images/messageBoxClicked.png)
+
+</div>
 
 # Multi Window
 

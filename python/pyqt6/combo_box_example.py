@@ -8,7 +8,7 @@ class ComboBoxExample(QMainWindow):
         super().__init__()
         self.setWindowTitle("ComboBoxExample")
         self.setFixedWidth(300)
-        self.setFixedHeight(300)
+        self.setFixedHeight(100)
 
         dropdown = QComboBox(self)
         dropdown.addItems(["Metric", "Imperial"])

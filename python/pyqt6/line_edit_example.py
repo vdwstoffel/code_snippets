@@ -6,9 +6,9 @@ class MainWindowShell(QMainWindow):
     def __init__(self):
 
         super().__init__()
-        self.setWindowTitle("Menu Example")
+        self.setWindowTitle("Line Edit Example")
         self.setFixedWidth(300)
-        self.setFixedHeight(300)
+        self.setFixedHeight(100)
 
         self.enter_text = QLineEdit(self)
         self.enter_text.setFixedWidth(150)

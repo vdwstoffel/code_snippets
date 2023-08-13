@@ -6,8 +6,8 @@ class QPushButtonExample(QMainWindow):
     def __init__(self):
 
         super().__init__()
-        self.setWindowTitle("Menu Example")
-        self.setFixedWidth(100)
+        self.setWindowTitle("Push Button Example")
+        self.setFixedWidth(300)
         self.setFixedHeight(100)
 
         self.btn = QPushButton("Exit", self)    # create the button

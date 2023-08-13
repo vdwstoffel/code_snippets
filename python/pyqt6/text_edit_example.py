@@ -1,18 +1,20 @@
 from PyQt6.QtWidgets import QApplication, QMainWindow, QTextEdit
 import sys
 
+
 class TextEditExample(QMainWindow):
 
     def __init__(self):
 
         super().__init__()
-        self.setWindowTitle("Menu Example")
+        self.setWindowTitle("Text Edit Example")
         self.setFixedWidth(500)
-        self.setFixedHeight(500)
+        self.setFixedHeight(300)
 
-        self.text_edit = QTextEdit("", self)    # Create a Text edit with blank vale
-        self.text_edit.setFixedSize(400, 400)   # Set the size
-        self.text_edit.setText("newValue")      # Preset a value
+        # Create a Text edit with blank value
+        self.text_edit = QTextEdit("", self)
+        self.text_edit.setFixedSize(400, 200)   # Set the size
+        self.text_edit.setText("preset text")   # Preset a value
         self.text_edit.setReadOnly(False)       # Set editable to True/False
         print(self.text_edit.toPlainText())     # Get the
 
