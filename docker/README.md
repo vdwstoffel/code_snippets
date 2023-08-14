@@ -52,10 +52,16 @@ docker start <container_id>
 Named volumes in Docker provide a way to manage and persist data outside of a container in a flexible and easy-to-use manner
 
 ```bash
-docker run -v mydata:/app/data my-image
+docker run -v volume_name:/app/data my-image
 
 # list all volumes
 docker volumes ls
+```
+## Anonymous Volumes
+
+
+```bash
+docker run -v /path/
 ```
 
 ## Bind Mounts
@@ -243,4 +249,70 @@ node_module/
 Dockerfile
 .git
 .venv
+```
+
+# Docker-Compose
+```txt
+├── backend
+│   ├── ...files
+├── frontend
+│   ├── ...files
+├── docker-compose.yaml
+```
+
+<figcaption>docker-compose.yaml
+
+```yaml
+version: 'version'        # docker-compose specification
+services:
+  # name your services
+  service-name:
+    image: imageName      # using a pre-existing image ex. mongo, node
+    build: path           # when building your own Dockerfile
+    container_name: name  # give custom name to service
+    ports:
+      - '<host_port>:<container_port>'
+    volumes:
+      # named volumes
+      - volume_name:/path/
+      # relative path for bind mounts
+      - ./backend:/app
+      # anon volumes
+      - /app/node_modules
+    environment:
+      - name=value        # env variables
+    env_file:
+      - ./path/to/filename
+    depends_on:
+      - serviceName       # other services (containers) it depends on
+
+    # using interactive mode
+    stdin_open: true
+    tty: true
+  
+  # second-service:
+  #   ...
+    
+volumes:
+  # Top level volumes where you add your named volumes
+  volume_name:
+```
+
+## Starting Containers
+
+Starting from the same folder as the docker-compose.yaml.
+Volumes and networks will automatically be created
+```bash
+docker-compose up
+docker-compose up -d        # run in detached mode
+docker-compose up --build   # rebuild the images
+```
+
+## Stopping Containers
+Deletes all containers + network it created
+```bash
+docker-compose down
+
+# to remove volumes (do not persist data)
+docker-compose down -v
 ```

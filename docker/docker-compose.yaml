@@ -1,0 +1,33 @@
+version: 'version'      # docker-compose specification
+services:
+  # name your services
+  service-name:
+    image: imageName      # using a pre-existing image ex. mongo, node
+    build: path           # when building your own Dockerfile
+    container_name: name  # give custom name to service
+    ports:
+      - '<host_port>:<container_port>'
+    volumes:
+      # named volumes
+      - volume_name:/path/
+      # relative path for bind mounts
+      - ./backend:/app
+      # anon volumes
+      - /app/node_modules
+    environment:
+      - name=value        # env variables
+    env_file:
+      - ./path/to/filename
+    depends_on:
+      - serviceName       # other services (containers) it depends on
+
+    # using interactive mode
+    stdin_open: true
+    tty: true
+  
+  # second-service:
+  #   ...
+    
+volumes:
+  # Top level volumes where you add your named volumes
+  volume_name:
