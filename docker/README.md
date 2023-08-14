@@ -298,6 +298,20 @@ volumes:
   volume_name:
 ```
 
+### build options
+For Dockerfiles in nested folders, the build can be specified
+
+```yaml
+build: 
+  context: .    #  specifies the build context as the root folder of your project.
+  dockerfile: docker/Dockerfile # points to the Dockerfile in the "docker" folder.
+```
+Note that the copy should end with a `/` to specify a folder in the docker/Dockerfile
+
+```Dockerfile
+COPY package*.json ./
+```
+
 ## Starting Containers
 
 Starting from the same folder as the docker-compose.yaml.
