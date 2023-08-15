@@ -330,3 +330,28 @@ docker-compose down
 # to remove volumes (do not persist data)
 docker-compose down -v
 ```
+
+# Utility Containers
+
+A utility container is a Docker container that is specifically designed to perform a single task or provide a specialized service to other containers.
+
+<figcaption>docker-file.yaml
+
+```yaml
+version: '3.18'
+services:
+
+npm:
+  build: ./
+  stdin_open: true
+  tty: true
+  volumes:
+    - ./:/app
+```
+
+Then in the terminal run the command
+```bash
+# docker-compose run --rm service_name arguments
+docker-compose run --rm npm init
+docker-compose run --rm npm install
+```

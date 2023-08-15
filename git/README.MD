@@ -15,10 +15,19 @@ git push                    # push to remote repo
 git restore file.js         # discard any changes made
 ```
 
+## Merging
+
+```bash
+git fetch
+git merge origin/<branch_name>
+git commit                  # if any conflict resole else just push
+git push
+```
+
 ## Go to previous commit 
 ```bash
 git log --oneline
-get reset sha_hash
+git reset sha_hash
 ```
 
 # Git Commands
