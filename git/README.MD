@@ -30,6 +30,12 @@ git log --oneline
 git reset sha_hash
 ```
 
+## Stashing
+```bash
+git stash
+git stash pop
+```
+
 # Git Commands
 ## Getting Started
 ```bash
