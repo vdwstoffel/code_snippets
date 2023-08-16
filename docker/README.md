@@ -317,7 +317,7 @@ COPY package*.json ./
 Starting from the same folder as the docker-compose.yaml.
 Volumes and networks will automatically be created
 ```bash
-docker-compose up
+docker-compose up           # supply services name if you do not want to run all
 docker-compose up -d        # run in detached mode
 docker-compose up --build   # rebuild the images
 ```
@@ -335,23 +335,53 @@ docker-compose down -v
 
 A utility container is a Docker container that is specifically designed to perform a single task or provide a specialized service to other containers.
 
-<figcaption>docker-file.yaml
+
+<figcaption>Dockerfile
+
+```dockerfile
+FROM node:18-alpine
+
+WORKDIR /app
+
+ENTRYPOINT [ "npm" ]    # initial arg to be run, other command will be appened
+```
+
+<figcaption>docker-compose.yaml
 
 ```yaml
 version: '3.18'
 services:
+  # app services here
+  # ...
 
-npm:
-  build: ./
-  stdin_open: true
-  tty: true
-  volumes:
-    - ./:/app
+  npm:  # service name to be run in cli
+    build: /path/to/dockerfile
+    stdin_open: true  # if applicable
+    tty: true         # if applicable
+    volumes:
+      - ./:/app
 ```
 
-Then in the terminal run the command
+Then in the terminal run the chosen service
 ```bash
 # docker-compose run --rm service_name arguments
-docker-compose run --rm npm init
-docker-compose run --rm npm install
+docker-compose run --rm init    # runs npm init
+docker-compose run --rm install # runs npm install
 ```
+
+If you have other app containers in the docker-compose.yaml and don`t want to run the utility containers. Add depends_on to the service
+
+```yaml
+services: 
+  frontend:
+    image: 'node'
+    depends_on:
+      - backend 
+      - database
+```
+Then in the command line run
+```bash
+docker-compose up -d frontend
+```
+
+This will launch all the dependent services
