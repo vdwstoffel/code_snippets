@@ -1,4 +1,6 @@
-# Getting Started
+# React
+
+## Getting Started
 
 ```bash
 # Create React App
@@ -12,9 +14,9 @@ cd my-app
 npm run dev
 ```
 
-# Components
+## Components
 
-## Functional Components
+### Functional Components
 
 ```javascript
 import "./global.css";
@@ -29,7 +31,7 @@ export default function App() {
 }
 ```
 
-## Class Based Components
+### Class Based Components
 
 ```javascript
 import React from "react";
@@ -61,7 +63,7 @@ class setStateExample extends React.Component {
 export default setStateExample;
 ```
 
-# Fragments
+## Fragments
 
 ```javascript
 import { Fragment } from "react";
@@ -82,9 +84,9 @@ export default function FragmentExample() {
 }
 ```
 
-# Props
+## Props
 
-<figcaption>PropsExample.jsx
+PropsExample.jsx
 
 ```javascript
 export default function PropsExample(props) {
@@ -97,7 +99,7 @@ export default function PropsExample(props) {
 }
 ```
 
-<figcaption>App.jsx
+App.jsx
 
 ```javascript
 import PropsExample from "./PropsExample";
@@ -107,7 +109,7 @@ export default function App() {
 }
 ```
 
-# Conditionals
+## Conditionals
 
 ```javascript
 export default function App() {
@@ -116,7 +118,7 @@ export default function App() {
 }
 ```
 
-# Loops
+## Loops
 
 ```javascript
 export default function App() {
@@ -133,7 +135,7 @@ export default function App() {
 }
 ```
 
-# UseState
+## UseState
 
 `useState` is a React hook that allows functional components to manage and update state.
 
@@ -158,7 +160,7 @@ export default function App() {
 }
 ```
 
-# UseEffect
+## UseEffect
 
 `useEffect` is a React hook that enables functional components to perform side effects, such as data fetching or DOM manipulation, after rendering.
 
@@ -185,7 +187,7 @@ export default function App() {
 }
 ```
 
-# useRef
+## useRef
 
 `useRef` is a React hook used to create a mutable reference that persists across renders and can be used to interact with DOM elements or store values without causing re-renders.
 
@@ -218,7 +220,7 @@ function App() {
 export default App;
 ```
 
-# useReducer
+## useReducer
 
 `useReducer` is a React hook that manages complex state logic by dispatching actions to a reducer function, allowing components to update state in a more organized and predictable manner.
 
@@ -257,11 +259,11 @@ export default function App() {
 }
 ```
 
-# useContext
+## useContext
 
 `useContext` is a React hook that allows components to access shared data or values from a parent component's context without the need for prop drilling.
 
-<figcaption>/context/auth-context.jsx
+/context/auth-context.jsx
 
 ```javascript
 import { createContext, useState } from "react";
@@ -296,7 +298,7 @@ export function AuthContextProvider(props) {
 export default AuthContext;
 ```
 
-<figcaption>App.jsx
+App.jsx
 
 ```javascript
 import { useContext } from "react";
@@ -315,7 +317,7 @@ export default function App() {
 }
 ```
 
-<figcaption>main.jsx
+main.jsx
 
 ```javascript
 import React from "react";
@@ -333,9 +335,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 );
 ```
 
-# Custom Hooks
+## Custom Hooks
 
-<figcaption>/hooks/useToggler.jsx
+/hooks/useToggler.jsx
 
 ```javascript
 import { useState } from "react";
@@ -352,7 +354,7 @@ export default function useToggler(value = false) {
 }
 ```
 
-<figcaption>App.jsx
+App.jsx
 
 ```javascript
 import useToggler from "./hooks/useToggler";
@@ -371,13 +373,13 @@ export default function App() {
 }
 ```
 
-# Router
+## Router
 
 ```bash
 npm i react-router-dom
 ```
 
-<figcaption>MainNavigation.jsx
+MainNavigation.jsx
 
 ```javascript
 import { Link } from "react-router-dom";
@@ -396,7 +398,7 @@ export default function MainNavigation() {
 }
 ```
 
-<figcaption>RootLayout.jsx
+RootLayout.jsx
 
 ```javascript
 import { Outlet } from "react-router-dom";
@@ -412,7 +414,7 @@ export default function RootLayout() {
 }
 ```
 
-<figcaption>App.jsx
+App.jsx
 
 ```javascript
 import "./global.css";
@@ -440,7 +442,7 @@ export default function App() {
 }
 ```
 
-<figcaption>Home.jsx
+Home.jsx
 
 ```javascript
 export default function Home() {
@@ -448,7 +450,7 @@ export default function Home() {
 }
 ```
 
-<figcaption>Products.jsx
+Products.jsx
 
 ```javascript
 export default function Products() {
@@ -456,9 +458,9 @@ export default function Products() {
 }
 ```
 
-## Dynamic Router
+### Dynamic Router
 
-<figcaption>App.jsx
+App.jsx
 
 ```javascript
 import { createBrowserRouter, RouterProvider } from "react-router-dom"; // npm i react-router-dom
@@ -479,7 +481,7 @@ export default function App() {
 }
 ```
 
-<figcaption>ProductItems.jsx
+ProductItems.jsx
 
 ```javascript
 import { useParams } from "react-router-dom";
@@ -495,9 +497,9 @@ export default function ProductItems() {
 }
 ```
 
-## useNavigate
+### useNavigate
 
-<figcaption>Home.jsx
+Home.jsx
 
 ```javascript
 import { useNavigate } from "react-router-dom";
@@ -518,7 +520,7 @@ export default function Home() {
 }
 ```
 
-## Link
+### Link
 
 ```javascript
 import { Link } from "react-router-dom";
@@ -529,7 +531,7 @@ export default function Page() {
 }
 ```
 
-## Navlink
+### Navlink
 
 ```javascript
 import { NavLink } from 'react-router-dom';
@@ -540,11 +542,11 @@ export default function App() {
 
 ```
 
-## useLoaderData
+### useLoaderData
 
 Load the data before the page loads and pass the data to the page
 
-<figcaption>App.jsx
+App.jsx
 
 ```javascript
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -560,7 +562,7 @@ export default function App() {
 }
 ```
 
-<figcaption>Content.jsx
+Content.jsx
 
 ```javascript
 import { useLoaderData } from "react-router-dom";
@@ -581,9 +583,9 @@ export async function loader() {
 }
 ```
 
-### useLoaderData Dynamic Routing
+#### useLoaderData Dynamic Routing
 
-<figcaption>Content.jsx
+Content.jsx
 
 ```javascript
 import { useLoaderData } from "react-router-dom";
@@ -605,7 +607,7 @@ export async function loader({ request, params }) {
 }
 ```
 
-<figcaption>App.jsx
+App.jsx
 
 ```javascript
 import "./global.css";
@@ -623,11 +625,11 @@ export default function App() {
 }
 ```
 
-## useRouterError
+### useRouterError
 
 Create a custom error component and send error to it. Whenever an error occurs react will find the closest errorElement
 
-<figcaption>App.jsx
+App.jsx
 
 ```javascript
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -649,7 +651,7 @@ export default function App() {
 }
 ```
 
-<figcaption>Content.jsx
+Content.jsx
 
 ```javascript
 import { useLoaderData, json } from "react-router-dom";
@@ -673,7 +675,7 @@ export async function loader() {
 }
 ```
 
-<figcaption>Error.jsx
+Error.jsx
 
 ```javascript
 import { useRouteError } from "react-router-dom";
@@ -690,11 +692,11 @@ export default function Error() {
 }
 ```
 
-## useSearchParam
+### useSearchParam
 
 The useSearchParams hook is used in React Router to access and manage the query parameters of the current URL, allowing components to read and update the search parameters in the browser's address bar.
 
-<figcaption>App.jsx
+App.jsx
 
 ```javascript
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -710,7 +712,7 @@ export default function App() {
 }
 ```
 
-<figcaption>Content.jsx
+Content.jsx
 
 ```javascript
 import { useSearchParams } from "react-router-dom";
@@ -727,11 +729,11 @@ export default function Products() {
 }
 ```
 
-## userRouterLoaderData
+### userRouterLoaderData
 
 This hook makes the data at any currently rendered route available anywhere in the tree
 
-<figcaption>App.jsx
+App.jsx
 
 ```javascript
 import { createBrowserRouter, RouterProvider } from "react-router-dom"; // npm i react-router-dom
@@ -754,7 +756,7 @@ export default function App() {
 }
 ```
 
-<figcaption>User.jsx
+User.jsx
 
 ```javascript
 import { useRouteLoaderData } from "react-router-dom";
@@ -766,7 +768,7 @@ export default function User() {
 }
 ```
 
-<figcaption>getUsername.js
+getUsername.js
 
 ```javascript
 export function getUsername() {
@@ -774,9 +776,9 @@ export function getUsername() {
 }
 ```
 
-## Router Forms
+### Router Forms
 
-<figcaption>App.jsx
+App.jsx
 
 ```javascript
 import { createBrowserRouter, RouterProvider } from "react-router-dom"; // npm i react-router-dom
@@ -796,7 +798,7 @@ export default function App() {
 }
 ```
 
-<figcaption>UserForm.jsx
+UserForm.jsx
 
 ```javascript
 import { Form, redirect } from "react-router-dom";
@@ -826,9 +828,9 @@ export async function action({ request, params }) {
 }
 ```
 
-## Delete Request
+### Delete Request
 
-<figcaption>App.jsx
+App.jsx
 
 ```javascript
 import { createBrowserRouter, RouterProvider } from "react-router-dom"; // npm i react-router-dom
@@ -848,7 +850,7 @@ export default function App() {
 }
 ```
 
-<figcaption>UserForm.jsx
+UserForm.jsx
 
 ```javascript
 import { redirect, useSubmit } from "react-router-dom";
@@ -878,9 +880,9 @@ export async function action({ request, params }) {
 }
 ```
 
-# Forms
+## Forms
 
-<figcaption>App.jsx
+App.jsx
 
 ```javascript
 import { useState } from "react";
@@ -918,7 +920,7 @@ export default function App() {
 }
 ```
 
-<figcaption>useFormInput.jsx
+useFormInput.jsx
 
 ```javascript
 import { useState } from "react";
@@ -939,9 +941,9 @@ export default function useFormInput(initialValue) {
 }
 ```
 
-## Frontend Form Validation
+### Frontend Form Validation
 
-<figcaption>App.jsx
+App.jsx
 
 ```javascript
 import { useState } from "react";
@@ -984,7 +986,7 @@ export default function App() {
 }
 ```
 
-<figcaption>App.module.css
+App.module.css
 
 ```css
 .error {
@@ -992,9 +994,9 @@ export default function App() {
 }
 ```
 
-# Passing Data to Parent Prop
+## Passing Data to Parent Prop
 
-<figcaption>App.jsx
+App.jsx
 
 ```javascript
 import { useState } from "react";
@@ -1022,7 +1024,7 @@ export default function App() {
 }
 ```
 
-<figcaption>Names.jsx
+Names.jsx
 
 ```javascript
 import { useState } from "react";
@@ -1053,9 +1055,9 @@ export default function Names(props) {
 }
 ```
 
-# Portals
+## Portals
 
-<figcaption>App.jsx
+App.jsx
 
 ```javascript
 import ReactDOM from "react-dom";
@@ -1074,7 +1076,7 @@ export default function App() {
 }
 ```
 
-<figcaption>index.html
+index.html
 
 ```html
 <body>
@@ -1084,7 +1086,7 @@ export default function App() {
 </body>
 ```
 
-# React Redux
+## React Redux
 
 ```bash
 npm i @reduxjs/toolkit
@@ -1099,7 +1101,7 @@ npm i react-redux
 └── store.jsx
 ```
 
-<figcaption>main.jsx
+main.jsx
 
 ```javascript
 import ReactDOM from "react-dom/client";
@@ -1115,9 +1117,9 @@ root.render(
     <App />
   </Provider>
 );
-````
+```
 
-<figcaption>App.jsx
+App.jsx
 
 ```javascript
 import { useSelector, useDispatch } from "react-redux";
@@ -1152,7 +1154,7 @@ export default function App() {
 }
 ```
 
-<figcaption>/store/counterslice.jsx
+/store/counterslice.jsx
 
 ```javascript
 import { createSlice } from "@reduxjs/toolkit";
@@ -1184,7 +1186,7 @@ export const counterAction = counterSlice.actions; // export to component
 export default counterSlice; // export to store
 ```
 
-<figcaption>/store/store.jsx
+/store/store.jsx
 
 ```javascript
 import { configureStore } from "@reduxjs/toolkit";
@@ -1205,9 +1207,9 @@ export default store; // will be imported in main as a Wrapper for the app
  */
 ```
 
-# Scoping CSS
+## Scoping CSS
 
-<figcaption>App.jsx
+App.jsx
 
 ```javascript
 import { useState } from "react";
@@ -1242,7 +1244,7 @@ export default function App() {
 }
 ```
 
-<figcaption>App.module.css
+App.module.css
 
 ```css
 .heading {
@@ -1266,9 +1268,9 @@ export default function App() {
 }
 ```
 
-# Authentication with express example
+## Authentication with express example
 
-## Express
+### Express
 
 ```javascript
 /*
@@ -1319,9 +1321,9 @@ const port = process.env.PORT || 8000;
 app.listen(port, () => console.log(`http://localhost:${port}`));
 ```
 
-## React
+### React
 
-<figcaption>App.jsx
+App.jsx
 
 ```javascript
 import { createBrowserRouter, RouterProvider } from "react-router-dom"; // npm i react-router-dom
@@ -1352,7 +1354,7 @@ export default function App() {
 }
 ```
 
-<figcaption>Signup.jsx
+Signup.jsx
 
 ```javascript
 import { Form, redirect } from "react-router-dom";
@@ -1399,7 +1401,7 @@ export async function action({ request }) {
 }
 ```
 
-<figcaption>auth.js
+auth.js
 
 ```javascript
 import { redirect } from "react-router-dom";
@@ -1436,7 +1438,7 @@ export function logout() {
 }
 ```
 
-<figcaption>Secret.jsx
+Secret.jsx
 
 ```javascript
 import { Link, useRouteLoaderData } from "react-router-dom";
@@ -1453,7 +1455,7 @@ export default function Secret() {
 }
 ```
 
-<figcaption>ViewToken.jsx
+ViewToken.jsx
 
 ```javascript
 import { useLoaderData } from "react-router-dom";
@@ -1508,9 +1510,9 @@ export async function loader() {
 }
 ```
 
-# Vite: Change Default Port
+## Vite: Change Default Port
 
-<figcaption>vite.config.js
+vite.config.js
 
 ```javascript
 // vite.config.js
@@ -1519,13 +1521,14 @@ import { defineConfig } from "vite";
 export default defineConfig({
   server: {
     port: 8000,
+    host: true, // needed for docker
   },
 });
 ```
 
-# Various
+## Various
 
-## Timeout on input changes
+### Timeout on input changes
 
 ```javascript
 useEffect(() => {
@@ -1541,7 +1544,7 @@ useEffect(() => {
 });
 ```
 
-## Show current link page
+### Show current link page
 
 ```javascript
 <NavLink
@@ -1551,7 +1554,7 @@ useEffect(() => {
 >
 ```
 
-# Extensions
+## Extensions
 
 [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
 
