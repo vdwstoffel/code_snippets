@@ -64,7 +64,7 @@ export default setStateExample;
 # Fragments
 
 ```javascript
-import from "react";
+import { Fragment } from "react";
 
 /*
 Instead of wrapping everything in a div and creating a lot of divs
@@ -387,8 +387,7 @@ export default function MainNavigation() {
     <header>
       <p>
         <Link to="/">Home </Link>
-      </p>{" "}
-      {/* Not home component just a link*/}
+      </p>{/* Not home component just a link*/}
       <p>
         <Link to="Products">Products</Link>
       </p>
@@ -459,58 +458,15 @@ export default function Products() {
 
 ## Dynamic Router
 
-<figcaption>MainNavigation.jsx
-
-```javascript
-import { Link } from "react-router-dom";
-
-export default function MainNavigation() {
-  return (
-    <header>
-      <p>
-        <Link to="/">Home </Link>
-      </p>{" "}
-      {/* Not home component just a link*/}
-      <p>
-        <Link to="Products">Products</Link>
-      </p>
-    </header>
-  );
-}
-```
-
-<figcaption>RootLayout.jsx
-
-```javascript
-import { Outlet } from "react-router-dom";
-import MainNavigation from "./MainNavigation";
-
-export default function RootLayout() {
-  return (
-    <>
-      <MainNavigation /> {/* Add a navigation header */}
-      <Outlet /> {/* Display all child pages */}
-    </>
-  );
-}
-```
-
 <figcaption>App.jsx
 
 ```javascript
-import "./global.css";
-
 import { createBrowserRouter, RouterProvider } from "react-router-dom"; // npm i react-router-dom
-
-import RootLayout from "./RootLayout";
-import Products from "./Products";
-import ProductItems from "./ProductItems";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />, // Wrap the root layout and add other pages as children
-    // errorElement: <ErrorPage />, // if page does not exists show a define error page
     children: [
       { path: "/products", element: <Products /> },
       { path: "products/:id", element: <ProductItems /> }, // dynamic routing
@@ -520,23 +476,6 @@ const router = createBrowserRouter([
 
 export default function App() {
   return <RouterProvider router={router} />;
-}
-```
-
-<figcaption>Products.jsx
-
-```javascript
-import { NavLink } from "react-router-dom";
-
-export default function Products() {
-  return (
-    <>
-      <h1>Products Page</h1>
-      <NavLink to={"/products/1"}>
-        <li>Product 1</li>
-      </NavLink>
-    </>
-  );
 }
 ```
 
@@ -550,56 +489,13 @@ export default function ProductItems() {
 
   return (
     <>
-      <h1>Product: {params.id}</h1>{" "}
-      {/* params.id must match the dynamic route */}
+      <h1>Product: {params.id}</h1>{/* params.id must match the dynamic route */}
     </>
   );
 }
 ```
 
 ## useNavigate
-
-<figcaption>RootLayout.jsx
-
-```javascript
-import { Outlet } from "react-router-dom";
-
-export default function RootLayout() {
-  return (
-    <>
-      <Outlet /> {/* Display all child pages */}
-    </>
-  );
-}
-```
-
-<figcaption>App.jsx
-
-```javascript
-import "./global.css";
-
-import { createBrowserRouter, RouterProvider } from "react-router-dom"; // npm i react-router-dom
-
-import RootLayout from "./RootLayout";
-import Home from "./Home";
-import Products from "./Products";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <RootLayout />, // Wrap the root layout and add other pages as children
-    // errorElement: <ErrorPage />, // if page does not exists show a define error page
-    children: [
-      { index: true, element: <Home /> },
-      { path: "/products", element: <Products /> },
-    ],
-  },
-]);
-
-export default function App() {
-  return <RouterProvider router={router} />;
-}
-```
 
 <figcaption>Home.jsx
 
@@ -622,12 +518,26 @@ export default function Home() {
 }
 ```
 
-<figcaption>Products.jsx
+## Link
 
 ```javascript
-export default function Products() {
-  return <h1>This is the Products page</h1>;
+import { Link } from "react-router-dom";
+
+export default function Page() {
+  return (<Link to="/toPage">To Page</Link>
+  );
 }
+```
+
+## Navlink
+
+```javascript
+import { NavLink } from 'react-router-dom';
+
+export default function App() {
+  return <Navlink to="/">Home</Navlink>
+}
+
 ```
 
 ## useLoaderData
@@ -896,8 +806,7 @@ export default function UserForm() {
     <Form method="POST">
       <h1>Hello</h1>
       <label>Name</label>
-      <input type="text" id="name" name="name" />{" "}
-      {/* name will be used to identify in the action*/}
+      <input type="text" id="name" name="name" />{/* name will be used to identify in the action*/}
       <button>Submit</button>
     </Form>
   );
