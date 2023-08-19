@@ -3,6 +3,7 @@
 * [Code Snippets](README.md)
 * [bash](bash/README.md)
 * [command\_line](command\_line/README.md)
+* [css](css/README.md)
 * [docker](docker/README.md)
 * [git](git/README.MD)
 * [linux](linux/README.md)
