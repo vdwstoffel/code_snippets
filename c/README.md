@@ -48,4 +48,16 @@ uint64_t has64bits = 0x12345678abcdef0;
 %d  to print decimal
 %o  to print octal
 %x  to print hex
+%s  to print strings
+```
+# User Input
+```c
+#include <stdio.h>
+
+void main() {
+    char name[15];
+    printf("What is your name: ");
+    scanf("%s", name);
+    printf("Hello %s\n", name);
+}
 ```
