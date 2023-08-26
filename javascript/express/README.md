@@ -1,4 +1,6 @@
-# Express Backend
+# Express
+
+## Express Backend
 
 ```bash
 npm i express
@@ -14,7 +16,7 @@ npm i express
 └── package.json
 ```
 
-<figcaption>app.js
+app.js
 
 ```javascript
 "use strict";
@@ -34,7 +36,7 @@ app.listen(port, () => {
 });
 ```
 
-<figcaption>/controllers/user.js
+/controllers/user.js
 
 ```javascript
 "use strict";
@@ -54,7 +56,7 @@ router.get("/users", async (req, res) => {
 module.exports = router;
 ```
 
-<figcaption>/models/userModels.js
+/models/userModels.js
 
 ```javascript
 "use strict";
@@ -68,7 +70,7 @@ class DB {
 module.exports = DB;
 ```
 
-# Express Frontend
+## Express Frontend
 
 ```bash
 npm i express
@@ -91,7 +93,7 @@ npm i ejs
     └── index.ejs
 ```
 
-<figcaption>app.js
+app.js
 
 ```javascript
 /*
@@ -126,7 +128,7 @@ app.listen(port, () => {
 });
 ```
 
-<figcaption>/cotrollers/user.js
+/cotrollers/user.js
 
 ```javascript
 "use strict";
@@ -147,7 +149,7 @@ module.exports = router;
 
 ```
 
-<figcaption>/views/index.ejs
+/views/index.ejs
 
 ```html
 <!DOCTYPE html>
