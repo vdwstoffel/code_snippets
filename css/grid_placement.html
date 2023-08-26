@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      background-color: gray;
+    }
+
+    .box {
+      border: black solid 1px;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .one {
+      grid-row: span 2;
+    }
+
+    .two {
+      grid-column: span 2;
+    }
+
+    .three {
+      grid-row: span 2;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <div class="box one">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam cumque
+        incidunt, repellendus ipsum, ab at quia fugiat non cupiditate sed qui
+        magnam cum tempore rerum maiores possimus eaque eos architecto!
+      </div>
+      <div class="box two">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt
+        commodi harum ratione, quas laborum porro, maxime quae nostrum veniam,
+        id blanditiis? Veritatis animi repellendus laborum veniam nisi beatae
+        modi. Nobis?
+      </div>
+      <div class="box three">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus
+        odio hic repellat libero voluptate totam eligendi, accusantium inventore
+        quo. Id sunt consectetur repudiandae iste vitae qui deserunt maxime
+        tempora fugiat!
+      </div>
+      <div class="box four">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore nihil
+        necessitatibus nobis vero distinctio quam dolore, impedit blanditiis
+        doloremque, dolores iure ratione consequuntur error doloribus! Labore
+        porro adipisci quod tempora!
+      </div>
+    </div>
+  </body>
+</html>
