@@ -354,7 +354,7 @@ services:
   # app services here
   # ...
 
-  npm:  # service name to be run in cli
+  npm-test:  # service name to be run in cli
     build: /path/to/dockerfile
     stdin_open: true  # if applicable
     tty: true         # if applicable
@@ -365,8 +365,8 @@ services:
 Then in the terminal run the chosen service
 ```bash
 # docker-compose run --rm service_name arguments
-docker-compose run --rm init    # runs npm init
-docker-compose run --rm install # runs npm install
+docker-compose run --rm npm-test init    # runs npm init
+docker-compose run --rm npm-test install # runs npm install
 ```
 
 If you have other app containers in the docker-compose.yaml and don`t want to run the utility containers. Add depends_on to the service
