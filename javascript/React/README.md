@@ -1,6 +1,4 @@
-# React
-
-## Getting Started
+# Getting Started
 
 ```bash
 # Create React App
@@ -14,9 +12,9 @@ cd my-app
 npm run dev
 ```
 
-## Components
+# Components
 
-### Functional Components
+## Functional Components
 
 ```javascript
 import "./global.css";
@@ -31,7 +29,7 @@ export default function App() {
 }
 ```
 
-### Class Based Components
+## Class Based Components
 
 ```javascript
 import React from "react";
@@ -63,7 +61,7 @@ class setStateExample extends React.Component {
 export default setStateExample;
 ```
 
-## Fragments
+# Fragments
 
 ```javascript
 import { Fragment } from "react";
@@ -84,7 +82,7 @@ export default function FragmentExample() {
 }
 ```
 
-## Props
+# Props
 
 PropsExample.jsx
 
@@ -109,7 +107,7 @@ export default function App() {
 }
 ```
 
-## Conditionals
+# Conditionals
 
 ```javascript
 export default function App() {
@@ -118,7 +116,7 @@ export default function App() {
 }
 ```
 
-## Loops
+# Loops
 
 ```javascript
 export default function App() {
@@ -135,7 +133,7 @@ export default function App() {
 }
 ```
 
-## UseState
+# UseState
 
 `useState` is a React hook that allows functional components to manage and update state.
 
@@ -160,7 +158,7 @@ export default function App() {
 }
 ```
 
-## UseEffect
+# UseEffect
 
 `useEffect` is a React hook that enables functional components to perform side effects, such as data fetching or DOM manipulation, after rendering.
 
@@ -187,7 +185,7 @@ export default function App() {
 }
 ```
 
-## useRef
+# useRef
 
 `useRef` is a React hook used to create a mutable reference that persists across renders and can be used to interact with DOM elements or store values without causing re-renders.
 
@@ -220,7 +218,7 @@ function App() {
 export default App;
 ```
 
-## useReducer
+# useReducer
 
 `useReducer` is a React hook that manages complex state logic by dispatching actions to a reducer function, allowing components to update state in a more organized and predictable manner.
 
@@ -259,7 +257,7 @@ export default function App() {
 }
 ```
 
-## useContext
+# useContext
 
 `useContext` is a React hook that allows components to access shared data or values from a parent component's context without the need for prop drilling.
 
@@ -335,7 +333,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 );
 ```
 
-## Custom Hooks
+# Custom Hooks
 
 /hooks/useToggler.jsx
 
@@ -373,7 +371,7 @@ export default function App() {
 }
 ```
 
-## Router
+# Router
 
 ```bash
 npm i react-router-dom
@@ -389,7 +387,8 @@ export default function MainNavigation() {
     <header>
       <p>
         <Link to="/">Home </Link>
-      </p>{/* Not home component just a link*/}
+      </p>
+      {/* Not home component just a link*/}
       <p>
         <Link to="Products">Products</Link>
       </p>
@@ -458,7 +457,7 @@ export default function Products() {
 }
 ```
 
-### Dynamic Router
+## Dynamic Router
 
 App.jsx
 
@@ -491,13 +490,14 @@ export default function ProductItems() {
 
   return (
     <>
-      <h1>Product: {params.id}</h1>{/* params.id must match the dynamic route */}
+      <h1>Product: {params.id}</h1>
+      {/* params.id must match the dynamic route */}
     </>
   );
 }
 ```
 
-### useNavigate
+## useNavigate
 
 Home.jsx
 
@@ -520,29 +520,27 @@ export default function Home() {
 }
 ```
 
-### Link
+## Link
 
 ```javascript
 import { Link } from "react-router-dom";
 
 export default function Page() {
-  return (<Link to="/toPage">To Page</Link>
-  );
+  return <Link to="/toPage">To Page</Link>;
 }
 ```
 
-### Navlink
+## Navlink
 
 ```javascript
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
 export default function App() {
-  return <Navlink to="/">Home</Navlink>
+  return <Navlink to="/">Home</Navlink>;
 }
-
 ```
 
-### useLoaderData
+## useLoaderData
 
 Load the data before the page loads and pass the data to the page
 
@@ -583,7 +581,7 @@ export async function loader() {
 }
 ```
 
-#### useLoaderData Dynamic Routing
+## useLoaderData Dynamic Routing
 
 Content.jsx
 
@@ -625,7 +623,7 @@ export default function App() {
 }
 ```
 
-### useRouterError
+## useRouterError
 
 Create a custom error component and send error to it. Whenever an error occurs react will find the closest errorElement
 
@@ -692,7 +690,7 @@ export default function Error() {
 }
 ```
 
-### useSearchParam
+## useSearchParam
 
 The useSearchParams hook is used in React Router to access and manage the query parameters of the current URL, allowing components to read and update the search parameters in the browser's address bar.
 
@@ -729,7 +727,7 @@ export default function Products() {
 }
 ```
 
-### userRouterLoaderData
+## userRouterLoaderData
 
 This hook makes the data at any currently rendered route available anywhere in the tree
 
@@ -776,7 +774,7 @@ export function getUsername() {
 }
 ```
 
-### Router Forms
+## Router Forms
 
 App.jsx
 
@@ -808,7 +806,8 @@ export default function UserForm() {
     <Form method="POST">
       <h1>Hello</h1>
       <label>Name</label>
-      <input type="text" id="name" name="name" />{/* name will be used to identify in the action*/}
+      <input type="text" id="name" name="name" />
+      {/* name will be used to identify in the action*/}
       <button>Submit</button>
     </Form>
   );
@@ -828,7 +827,7 @@ export async function action({ request, params }) {
 }
 ```
 
-### Delete Request
+## Delete Request
 
 App.jsx
 
@@ -880,7 +879,7 @@ export async function action({ request, params }) {
 }
 ```
 
-## Forms
+# Forms
 
 App.jsx
 
@@ -941,7 +940,7 @@ export default function useFormInput(initialValue) {
 }
 ```
 
-### Frontend Form Validation
+## Frontend Form Validation
 
 App.jsx
 
@@ -994,7 +993,7 @@ App.module.css
 }
 ```
 
-## Passing Data to Parent Prop
+# Passing Data to Parent Prop
 
 App.jsx
 
@@ -1055,7 +1054,7 @@ export default function Names(props) {
 }
 ```
 
-## Portals
+# Portals
 
 App.jsx
 
@@ -1086,7 +1085,7 @@ index.html
 </body>
 ```
 
-## React Redux
+# React Redux
 
 ```bash
 npm i @reduxjs/toolkit
@@ -1207,7 +1206,7 @@ export default store; // will be imported in main as a Wrapper for the app
  */
 ```
 
-## Scoping CSS
+# Scoping CSS
 
 App.jsx
 
@@ -1268,9 +1267,9 @@ App.module.css
 }
 ```
 
-## Authentication with express example
+# Authentication with express example
 
-### Express
+## Express
 
 ```javascript
 /*
@@ -1321,7 +1320,7 @@ const port = process.env.PORT || 8000;
 app.listen(port, () => console.log(`http://localhost:${port}`));
 ```
 
-### React
+## React
 
 App.jsx
 
@@ -1510,7 +1509,7 @@ export async function loader() {
 }
 ```
 
-## Vite: Change Default Port
+# Vite: Change Default Port
 
 vite.config.js
 
@@ -1526,9 +1525,9 @@ export default defineConfig({
 });
 ```
 
-## Various
+# Various
 
-### Timeout on input changes
+## Timeout on input changes
 
 ```javascript
 useEffect(() => {
@@ -1544,7 +1543,7 @@ useEffect(() => {
 });
 ```
 
-### Show current link page
+## Show current link page
 
 ```javascript
 <NavLink
@@ -1554,7 +1553,168 @@ useEffect(() => {
 >
 ```
 
-## Extensions
+# Testing
+
+<figcaption>App.test.js
+
+```javascript
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import App from "./App"; // import the component
+
+/*
+ * Create a suite using the global describe function, and add
+ * all relevant tests underneath it.
+ *
+ * render component
+ * get element
+ * assert the element is correct
+ */
+
+describe("App component", () => {
+  test("should render 'Basic testing' paragraph", () => {
+    render(<App />);
+    const heading = screen.getByText("basic test", { exact: false });
+    expect(heading).toBeInTheDocument();
+  });
+
+  test("should change text when button is clicked", () => {
+    render(<App />);
+    // Check that text is present
+    const preClickText = screen.getByText("State Unchanged", { exact: false });
+    expect(preClickText).toBeInTheDocument();
+
+    // Click the button
+    const buttonElement = screen.getByRole("button");
+    userEvent.click(buttonElement);
+
+    // Check that text is changed
+    const postClickText = screen.getByText("State Changed", { exact: false });
+    expect(postClickText).toBeInTheDocument();
+
+    // make sure original text is not present
+    // when text is not present use queryByText to return null if nothing found
+    const originalText = screen.queryByText("State Unchanged", {
+      exact: false,
+    });
+    expect(originalText).not.toBeInTheDocument();
+  });
+});
+```
+
+```bash
+npm test
+```
+
+## Async Code
+
+<figcaption>App.test.js
+
+```javascript
+import { render, screen } from "@testing-library/react";
+import App from "./App";
+import axios from "axios";
+
+describe("Async component", () => {
+  test("renders post", async () => {
+    // replace axios with a mock function
+    axios.get = jest.fn();
+    // data should mock to original data
+    axios.get.mockResolvedValueOnce({
+      data: [{ id: "p1", title: "Mock Post" }],
+    });
+
+    render(<App />);
+    const listItemElements = await screen.findAllByRole(
+      "listitem",
+      { exact: false },
+      { timeout: 1000 }
+    );
+    expect(listItemElements).not.toHaveLength(0);
+  });
+});
+
+```
+
+To use axios add to package.json
+
+<figcaption>package.json
+
+```json
+"jest": {
+    "moduleNameMapper": {
+      "axios": "axios/dist/node/axios.cjs"
+    }
+  },
+```
+
+## Vite
+
+Vite requires some modification [see here](https://dev.to/pacheco/configure-vitest-with-react-testing-library-5cbb)
+
+- Install the dependancies
+
+```bash
+npm i vitest jsdom @testing-library/react @testing-library/jest-dom
+```
+
+- In your package.json file, add the following line under the scripts attribute:
+
+<figcaption>package.json
+
+```json
+"scripts": {
+ "test": "vitest"
+}
+```
+
+- Create a setup tests file
+
+<figcaption>path/setup.ts
+
+```javascript
+import { expect, afterEach } from "vitest";
+import { cleanup } from "@testing-library/react";
+import matchers from "@testing-library/jest-dom/matchers";
+
+expect.extend(matchers);
+
+afterEach(() => {
+  cleanup();
+});
+```
+
+- Configure vite to use this setup
+
+```javascript
+  plugins: [react()],
+  test: {
+    environment: 'jsdom',
+    setupFiles: ['./tests/setup.ts'],
+    testMatch: ['./tests/**/*.test.tsx'],
+    globals: true
+  }
+```
+
+- Your first test
+
+note this should be a .tsx file
+
+```javascript
+import { render, screen } from '@testing-library/react';
+import App from "../src/App";
+
+
+describe('App', () => {
+  it('renders headline', () => {
+    render(<App />);
+    const headline = screen.getByText(/It works and you found me!/i);
+    expect(headline).toBeInTheDocument();
+  });
+});
+```
+
+# Extensions
 
 [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
 
