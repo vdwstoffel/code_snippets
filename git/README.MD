@@ -33,3 +33,16 @@ git reset sha_hash
 git stash
 git stash pop
 ```
+
+# Submodules
+
+```bash
+# updating submodules on a clone
+git submodule init
+
+# adding a submodule
+git submodule add <remote_url> <destination_folder>
+
+# updating a submodule 
+git submodule update --remote --merge
+```
