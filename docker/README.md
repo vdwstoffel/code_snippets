@@ -267,7 +267,7 @@ version: 'version'        # docker-compose specification
 services:
   # name your services
   service-name:
-    image: imageName      # using a pre-existing image ex. mongo, node
+    image: imageName:tag  # name of image (own name or use existing images ex mongo, node)
     build: path           # when building your own Dockerfile
     container_name: name  # give custom name to service
     ports:
