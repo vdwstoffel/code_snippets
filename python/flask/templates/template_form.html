@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Template Forms Example
+{% endblock %}
+
+{% block body %}
+
+<form action="{{ url_for('template_form')}}" method="POST">
+    <input type="text" name="userInput">
+    <button type="submit">Submit</button>
+</form>
+    
+{% endblock %}
