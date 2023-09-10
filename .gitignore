@@ -94,3 +94,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+instance/

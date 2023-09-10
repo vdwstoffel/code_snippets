@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Database Examples
+{% endblock %}
+
+{% block body %}
+    {% for record in records %}
+    <br>
+        {{record.username}}
+        {{record.number}}
+    {% endfor %}
+{% endblock %}

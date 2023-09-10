@@ -26,6 +26,14 @@ def user(name):
     return render_template("index.html", name=name)
 ```
 
+# Redirect
+
+```python
+from flask import redirect, url_for
+
+return redirect(url_for('function_name'))
+```
+
 # Templates
 
 ```bash
@@ -163,22 +171,6 @@ Use to redirect to function names
 ```html
 <!-- Add the function name in the app -->
 <a href="{{ url_for('index') }}">Home</a>
-```
-
-# IF/ELSE
-
-```python
-@app.route("/user/<name>",)
-def user(name):
-    return render_template("index.html", name=name)
-```
-
-```html
-{% if name %}
-<h1>Hello {{ name }}!</h1>
-{% else %}
-<h1>Hello, Flask!</h1>
-{% endif %}
 ```
 
 # Flask Forms
@@ -337,4 +329,119 @@ if __name__ == "__main__":
   {{ form.csrf_token }} 
   {{ form.submit() }}
 </form>
+```
+
+# SQLAlchemy
+
+```bash
+pip install Flask-SQLAlchemy
+```
+
+```python
+from flask import Flask, render_template, redirect, url_for
+from flask_sqlalchemy import SQLAlchemy
+from random import randint
+
+app = Flask(__name__)
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db.sqlite"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+db = SQLAlchemy(app)
+app.app_context().push()
+
+# Create db
+class UserLog(db.Model):
+    __tablename__ = "userlogs"
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(100), nullable=False)
+    number = db.Column(db.Integer, nullable=False)
+db.create_all()
+
+if __name__ == "__main__":
+    app.run(port=5000, debug=True)
+```
+
+## Get all records
+
+```python
+@app.route("/", methods=["GET"])
+def index():
+    all_records = UserLog.query.all()
+    return render_template("db_records.html", records=all_records)
+```
+
+## Get by filter
+
+```python
+@app.route("/number/<number>", methods=["GET"])
+def get_number(number):
+    record = UserLog.query.filter_by(number=number).first()
+    return f"{record.username} {record.number}"
+```
+
+```python
+@app.route("/name/<name>", methods=["GET"])
+def get_name(name):
+    all_records = UserLog.query.filter_by(username=name)
+    return render_template("db_records.html", records=all_records)
+```
+
+## Create record
+
+```python
+@app.route("/add", methods=["POST"])
+def add():
+    new_entry = UserLog(username="Stoffel", number=randint(0, 20))
+    db.session.add(new_entry)
+    db.session.commit()
+    return redirect(url_for("index"))
+```
+
+## Update record
+
+```python
+@app.route("/update/<number>", methods=["POST"])
+def update(number):
+    record = UserLog.query.filter_by(number=number).first()
+    record.number = randint(80, 99)
+    db.session.commit()
+    return redirect(url_for("index"))
+```
+
+## Delete record
+
+```python
+@app.route("/delete/<number>", methods=["POST"])
+def delete(number):
+    record = UserLog.query.filter_by(number=number).first()
+    db.session.delete(record)
+    db.session.commit()
+    return redirect(url_for("index"))
+```
+
+# Jinja
+
+## IF/ELSE
+
+```python
+@app.route("/user/<name>",)
+def user(name):
+    return render_template("index.html", name=name)
+```
+
+```html
+{% if name %}
+    <h1>Hello {{ name }}!</h1>
+{% else %}
+    <h1>Hello, Flask!</h1>
+{% endif %}
+```
+
+## For
+
+```html
+{% for record in records %}
+    {{record.username}}
+    {{record.number}}
+{% endfor %}
 ```
