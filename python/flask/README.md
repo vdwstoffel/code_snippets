@@ -111,7 +111,7 @@ def template_variable():
 <h1>Current Year: {{ year }}</h1>
 ```
 
-## Template Forms
+# Template Forms
 
 ```html
 <form action="{{ url_for('template_form')}}" method="POST">
@@ -132,7 +132,7 @@ def template_form():
         return render_template("template_form.html")
 ```
 
-## Static Files
+# Static Files
 
 ```bash
 ├── app.py
@@ -156,7 +156,7 @@ def template_form():
 </head>
 ```
 
-## URL For
+# URL For
 
 Use to redirect to function names
 
@@ -165,7 +165,7 @@ Use to redirect to function names
 <a href="{{ url_for('index') }}">Home</a>
 ```
 
-## IF/ELSE
+# IF/ELSE
 
 ```python
 @app.route("/user/<name>",)
@@ -181,7 +181,7 @@ def user(name):
 {% endif %}
 ```
 
-## Flask Forms
+# Flask Forms
 
 ```bash
 pip install Flask-WTF
@@ -231,7 +231,7 @@ if __name__ == "__main__":
 </form>
 ```
 
-### Quick Forms with Bootstrap
+## Quick Forms with Bootstrap
 
 ```bash
 pip install Flask-Bootstrap
@@ -272,7 +272,7 @@ if __name__ == "__main__":
 </form>
 ```
 
-### Form Validators/Fields
+## Form Validators/Fields
 
 ```python
 from wtforms import (StringField, BooleanField, DateTimeField, RadioField,
