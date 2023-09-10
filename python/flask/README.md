@@ -325,21 +325,16 @@ if __name__ == "__main__":
 ```
 
 ```html
-{% extends 'base.html' %} 
-{% block title %} Flash Example {% endblock %} 
-{%block body %}
 <form method="POST">
   {% with messages = get_flashed_messages() %} 
-  {% for message in messages %} 
-  {% if message %}
-  <p>{{ message }}</p>
-  {% endif %} 
-  {% endfor %} 
+    {% for message in messages %} 
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif %} 
+    {% endfor %} 
   {% endwith %}
 
   {{ form.csrf_token }} 
   {{ form.submit() }}
 </form>
-{% endblock %}
-
 ```
