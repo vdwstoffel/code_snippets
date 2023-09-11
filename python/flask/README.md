@@ -47,7 +47,7 @@ Other html file will build of from base.html. So you can add css/bootstrap and a
 
 <figcaption>base.html
 
-```jinja
+```django
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -66,7 +66,7 @@ Other html file will build of from base.html. So you can add css/bootstrap and a
 
 <figcaption>index.html
 
-```jinja
+```django
 <!-- use the base template -->
 {% extends 'base.html' %}
 
@@ -82,7 +82,7 @@ Other html file will build of from base.html. So you can add css/bootstrap and a
 
 Including one page into another page ex header
 
-```jinja
+```django
 <body>
   {% include "header.html" %}
 </body>
@@ -115,13 +115,13 @@ def template_variable():
     return render_template("variables.html", year=year)
 ```
 
-```jinja
+```django
 <h1>Current Year: {{ year }}</h1>
 ```
 
 # Template Forms
 
-```jinja
+```django
 <form action="{{ url_for('template_form')}}" method="POST">
   <input type="text" name="userInput" />
   <button type="submit">Submit</button>
@@ -153,7 +153,7 @@ def template_form():
 
 <figcaption>index.html
 
-```jinja
+```django
 <head>
   <!-- static will be used as the base folder -->
   <link
@@ -168,7 +168,7 @@ def template_form():
 
 Use to redirect to function names
 
-```jinja
+```django
 <!-- Add the function name in the app -->
 <a href="{{ url_for('index') }}">Home</a>
 ```
@@ -214,7 +214,7 @@ if __name__ == "__main__":
 
 ```
 
-```jinja
+```django
 <form method="POST">
   {{ form.csrf_token }} 
   {{ form.name.label }} 
@@ -256,7 +256,7 @@ if __name__ == "__main__":
     app.run(port=5000, debug=True)
 ```
 
-```jinja
+```django
 {% import "bootstrap/wtf.html" as wtf %}
 
 <form method="POST" novalidate>
@@ -316,7 +316,7 @@ if __name__ == "__main__":
     app.run(port=5000, debug=True)
 ```
 
-```jinja
+```django
 <form method="POST">
   {% with messages = get_flashed_messages() %} 
     {% for message in messages %} 
@@ -429,7 +429,7 @@ def user(name):
     return render_template("index.html", name=name)
 ```
 
-```jinja
+```django
 {% if name %}
     <h1>Hello {{ name }}!</h1>
 {% else %}
@@ -439,7 +439,7 @@ def user(name):
 
 ## For
 
-```jinja
+```django
 {% for record in records %}
     {{record.username}}
     {{record.number}}
