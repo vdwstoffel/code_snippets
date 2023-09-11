@@ -47,7 +47,7 @@ return redirect(url_for('function_name'))
 
 Other html file will build of from base.html. So you can add css/bootstrap and all globals here
 
-{% code title="base.html" %}
+
 ```django
 <!DOCTYPE html>
 <html lang="en">
@@ -56,22 +56,18 @@ Other html file will build of from base.html. So you can add css/bootstrap and a
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- when extended content can be dynamically added -->
-    <title>{% raw %}
-{% block title %}{% endblock %}</title>
+    <title>{% block title %}{% endblock %}</title>
   </head>
   <body>
     <!-- when extended content can be dynamically added -->
     {% block body %} {% endblock %}
-{% endraw %}
   </body>
 </html>
 ```
-{% endcode %}
 
-{% code title="index.html" %}
+
 ```django
 <!-- use the base template -->
-{% raw %}
 {% extends 'base.html' %}
 
 <!-- dynamically add extra content -->
@@ -80,9 +76,7 @@ Other html file will build of from base.html. So you can add css/bootstrap and a
 {% block body %}
 <h1>Welcome to Flask</h1>
 {% endblock %}
-{% endraw %}
 ```
-{% endcode %}
 
 ### Includes
 
@@ -90,9 +84,7 @@ Including one page into another page ex header
 
 ```django
 <body>
-  {% raw %}
 {% include "header.html" %}
-{% endraw %}
 </body>
 ```
 
@@ -265,9 +257,7 @@ if __name__ == "__main__":
 ```
 
 ```django
-{% raw %}
 {% import "bootstrap/wtf.html" as wtf %}
-{% endraw %}
 
 <form method="POST" novalidate>
     {{ wtf.quick_form(form) }}
@@ -328,15 +318,13 @@ if __name__ == "__main__":
 
 ```django
 <form method="POST">
-  {% raw %}
 {% with messages = get_flashed_messages() %} 
     {% for message in messages %} 
         {% if message %}
             <p>{{ message }}</p>
         {% endif %} 
     {% endfor %} 
-  {% endwith %}
-{% endraw %}
+{% endwith %}
 
   {{ form.csrf_token }} 
   {{ form.submit() }}
@@ -442,24 +430,19 @@ def user(name):
 ```
 
 ```django
-{% raw %}
 {% if name %}
     <h1>Hello {{ name }}!</h1>
 {% else %}
     <h1>Hello, Flask!</h1>
 {% endif %}
-{% endraw %}
 ```
 
 ### For
 
-{% code fullWidth="false" %}
+
 ```django
-{% raw %}
 {% for record in records %}
     {{record.username}}
     {{record.number}}
 {% endfor %}
-{% endraw %}
 ```
-{% endcode %}
