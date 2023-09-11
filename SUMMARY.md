@@ -1,6 +1,6 @@
 # Table of contents
 
-* [bash](README.md)
+* [bash](bash/README.md)
 * [c](c/README.md)
 * [command\_line](command\_line/README.md)
 * [css](css/README.md)
