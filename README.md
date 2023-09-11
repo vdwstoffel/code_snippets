@@ -45,6 +45,9 @@ ex Flask jinja templating. This does not render correctly in gitbook if done the
 
 the code-encode allows us to give a caption to the code snippet. raw-endraw allows gitbook to display the jinja template correctly.
 
-### Flask
+### General
+To give captions to code
 - wrap the code in {% code title='Snippet Title' %} (including ``````) {% endcode %}
+
+### Flask
 - wrap all jinja code in {% raw %} {% endraw %}
