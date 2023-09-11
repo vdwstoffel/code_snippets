@@ -16,7 +16,7 @@
 * [python](python/README.md)
   * [databases](python/databases/README.md)
   * [flask](python/flask/README.md)
-  * [other](python/other/README.md)
   * [pyqt6](python/pyqt6/README.md)
   * [selenium](python/selenium/README.md)
+  * [other](python/other/README.md)
 * [sql](sql/README.md)
