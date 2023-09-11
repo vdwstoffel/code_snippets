@@ -1,4 +1,6 @@
-# Express Backend
+# Express
+
+## Express Backend
 
 ```bash
 npm i express
@@ -12,8 +14,7 @@ npm i express
 │   └── userModel.js
 ```
 
-app.js
-
+{% code title="app.js" %}
 ```javascript
 "use strict";
 
@@ -31,9 +32,9 @@ app.listen(port, () => {
   console.log(`http://localhost:${port}`);
 });
 ```
+{% endcode %}
 
-/controllers/user.js
-
+{% code title="/controllers/user.js" %}
 ```javascript
 "use strict";
 
@@ -51,9 +52,9 @@ router.get("/users", async (req, res) => {
 
 module.exports = router;
 ```
+{% endcode %}
 
-/models/userModels.js
-
+{% code title="/models/userModel.js" %}
 ```javascript
 "use strict";
 
@@ -65,8 +66,9 @@ class DB {
 
 module.exports = DB;
 ```
+{% endcode %}
 
-# Express Frontend
+## Express Frontend
 
 ```bash
 npm i express
@@ -167,7 +169,7 @@ module.exports = router;
 </html>
 ```
 
-## Post data to server
+### Post data to server
 
 ```html
 <form  action="/" method="post">
@@ -187,7 +189,7 @@ app.post("/", (req, res) => {
 });
 ```
 
-# Route Parameters
+## Route Parameters
 
 ```javascript
 // Route parameters     http://localhost:3000/parameters/stoffel/walt
@@ -197,7 +199,7 @@ app.get('/parameters/:name/:surname', (req, res) => {
   })
 ```
 
-# Middleware
+## Middleware
 
 ```javascript
 /*
@@ -259,9 +261,9 @@ app.use((req, res) => {
 app.listen(3000, () => console.log("http://localhost:3000"));
 ```
 
-# ejs
+## ejs
 
-## Includes
+### Includes
 
 ```html
 <!DOCTYPE html>
