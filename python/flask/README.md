@@ -1,4 +1,6 @@
-# Getting Started
+# flask
+
+## Getting Started
 
 ```bash
 pip install Flask
@@ -17,7 +19,7 @@ if __name__ == "__main__":
     app.run(port=5000, debug=True)
 ```
 
-# Dynamic Routing
+## Dynamic Routing
 
 ```python
 @app.route("/user/<name>")
@@ -26,7 +28,7 @@ def user(name):
     return render_template("index.html", name=name)
 ```
 
-# Redirect
+## Redirect
 
 ```python
 from flask import redirect, url_for
@@ -34,7 +36,7 @@ from flask import redirect, url_for
 return redirect(url_for('function_name'))
 ```
 
-# Templates
+## Templates
 
 ```bash
 ├── app.py
@@ -45,8 +47,7 @@ return redirect(url_for('function_name'))
 
 Other html file will build of from base.html. So you can add css/bootstrap and all globals here
 
-<figcaption>base.html
-
+{% code title="base.html" %}
 ```django
 <!DOCTYPE html>
 <html lang="en">
@@ -55,19 +56,22 @@ Other html file will build of from base.html. So you can add css/bootstrap and a
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- when extended content can be dynamically added -->
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% raw %}
+{% block title %}{% endblock %}</title>
   </head>
   <body>
     <!-- when extended content can be dynamically added -->
     {% block body %} {% endblock %}
+{% endraw %}
   </body>
 </html>
 ```
+{% endcode %}
 
-<figcaption>index.html
-
+{% code title="index.html" %}
 ```django
 <!-- use the base template -->
+{% raw %}
 {% extends 'base.html' %}
 
 <!-- dynamically add extra content -->
@@ -76,19 +80,23 @@ Other html file will build of from base.html. So you can add css/bootstrap and a
 {% block body %}
 <h1>Welcome to Flask</h1>
 {% endblock %}
+{% endraw %}
 ```
+{% endcode %}
 
-## Includes
+### Includes
 
 Including one page into another page ex header
 
 ```django
 <body>
-  {% include "header.html" %}
+  {% raw %}
+{% include "header.html" %}
+{% endraw %}
 </body>
 ```
 
-## Rendering templates
+### Rendering templates
 
 ```bash
 ├── app.py
@@ -106,7 +114,7 @@ def index():
     return render_template("index.html")
 ```
 
-## Template Variables
+### Template Variables
 
 ```python
 @app.route("/tempvar")
@@ -119,7 +127,7 @@ def template_variable():
 <h1>Current Year: {{ year }}</h1>
 ```
 
-# Template Forms
+## Template Forms
 
 ```django
 <form action="{{ url_for('template_form')}}" method="POST">
@@ -140,7 +148,7 @@ def template_form():
         return render_template("template_form.html")
 ```
 
-# Static Files
+## Static Files
 
 ```bash
 ├── app.py
@@ -151,7 +159,7 @@ def template_form():
     └── index.html
 ```
 
-<figcaption>index.html
+index.html
 
 ```django
 <head>
@@ -164,7 +172,7 @@ def template_form():
 </head>
 ```
 
-# URL For
+## URL For
 
 Use to redirect to function names
 
@@ -173,7 +181,7 @@ Use to redirect to function names
 <a href="{{ url_for('index') }}">Home</a>
 ```
 
-# Flask Forms
+## Flask Forms
 
 ```bash
 pip install Flask-WTF
@@ -223,7 +231,7 @@ if __name__ == "__main__":
 </form>
 ```
 
-## Quick Forms with Bootstrap
+### Quick Forms with Bootstrap
 
 ```bash
 pip install Flask-Bootstrap
@@ -257,14 +265,16 @@ if __name__ == "__main__":
 ```
 
 ```django
+{% raw %}
 {% import "bootstrap/wtf.html" as wtf %}
+{% endraw %}
 
 <form method="POST" novalidate>
     {{ wtf.quick_form(form) }}
 </form>
 ```
 
-## Form Validators/Fields
+### Form Validators/Fields
 
 ```python
 from wtforms import (StringField, BooleanField, DateTimeField, RadioField,
@@ -282,7 +292,7 @@ date = DateTimeField()
 submit = SubmitField()
 ```
 
-## Flash messages
+### Flash messages
 
 ```python
 from flask import Flask, render_template, flash
@@ -318,20 +328,22 @@ if __name__ == "__main__":
 
 ```django
 <form method="POST">
-  {% with messages = get_flashed_messages() %} 
+  {% raw %}
+{% with messages = get_flashed_messages() %} 
     {% for message in messages %} 
         {% if message %}
             <p>{{ message }}</p>
         {% endif %} 
     {% endfor %} 
   {% endwith %}
+{% endraw %}
 
   {{ form.csrf_token }} 
   {{ form.submit() }}
 </form>
 ```
 
-# SQLAlchemy
+## SQLAlchemy
 
 ```bash
 pip install Flask-SQLAlchemy
@@ -361,7 +373,7 @@ if __name__ == "__main__":
     app.run(port=5000, debug=True)
 ```
 
-## Get all records
+### Get all records
 
 ```python
 @app.route("/", methods=["GET"])
@@ -370,7 +382,7 @@ def index():
     return render_template("db_records.html", records=all_records)
 ```
 
-## Get by filter
+### Get by filter
 
 ```python
 @app.route("/number/<number>", methods=["GET"])
@@ -386,7 +398,7 @@ def get_name(name):
     return render_template("db_records.html", records=all_records)
 ```
 
-## Create record
+### Create record
 
 ```python
 @app.route("/add", methods=["POST"])
@@ -397,7 +409,7 @@ def add():
     return redirect(url_for("index"))
 ```
 
-## Update record
+### Update record
 
 ```python
 @app.route("/update/<number>", methods=["POST"])
@@ -408,7 +420,7 @@ def update(number):
     return redirect(url_for("index"))
 ```
 
-## Delete record
+### Delete record
 
 ```python
 @app.route("/delete/<number>", methods=["POST"])
@@ -419,9 +431,9 @@ def delete(number):
     return redirect(url_for("index"))
 ```
 
-# Jinja
+## Jinja
 
-## IF/ELSE
+### IF/ELSE
 
 ```python
 @app.route("/user/<name>",)
@@ -430,18 +442,24 @@ def user(name):
 ```
 
 ```django
+{% raw %}
 {% if name %}
     <h1>Hello {{ name }}!</h1>
 {% else %}
     <h1>Hello, Flask!</h1>
 {% endif %}
+{% endraw %}
 ```
 
-## For
+### For
 
+{% code fullWidth="false" %}
 ```django
+{% raw %}
 {% for record in records %}
     {{record.username}}
     {{record.number}}
 {% endfor %}
+{% endraw %}
 ```
+{% endcode %}
