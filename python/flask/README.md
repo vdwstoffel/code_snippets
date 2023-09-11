@@ -47,8 +47,8 @@ return redirect(url_for('function_name'))
 
 Other html file will build of from base.html. So you can add css/bootstrap and all globals here
 
-
-```django
+{% code title="base.html" %}
+```html
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -56,18 +56,22 @@ Other html file will build of from base.html. So you can add css/bootstrap and a
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- when extended content can be dynamically added -->
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% raw %}
+{% block title %}{% endblock %}</title>
   </head>
   <body>
     <!-- when extended content can be dynamically added -->
     {% block body %} {% endblock %}
+{% endraw %}
   </body>
 </html>
 ```
+{% endcode %}
 
-
-```django
+{% code title="index.html" %}
+```html
 <!-- use the base template -->
+{% raw %}
 {% extends 'base.html' %}
 
 <!-- dynamically add extra content -->
@@ -76,15 +80,19 @@ Other html file will build of from base.html. So you can add css/bootstrap and a
 {% block body %}
 <h1>Welcome to Flask</h1>
 {% endblock %}
+{% endraw %}
 ```
+{% endcode %}
 
 ### Includes
 
 Including one page into another page ex header
 
-```django
+```html
 <body>
+{% raw %}
 {% include "header.html" %}
+{% endraw %}
 </body>
 ```
 
@@ -115,13 +123,13 @@ def template_variable():
     return render_template("variables.html", year=year)
 ```
 
-```django
+```html
 <h1>Current Year: {{ year }}</h1>
 ```
 
 ## Template Forms
 
-```django
+```html
 <form action="{{ url_for('template_form')}}" method="POST">
   <input type="text" name="userInput" />
   <button type="submit">Submit</button>
@@ -153,7 +161,7 @@ def template_form():
 
 index.html
 
-```django
+```html
 <head>
   <!-- static will be used as the base folder -->
   <link
@@ -168,7 +176,7 @@ index.html
 
 Use to redirect to function names
 
-```django
+```html
 <!-- Add the function name in the app -->
 <a href="{{ url_for('index') }}">Home</a>
 ```
@@ -214,7 +222,7 @@ if __name__ == "__main__":
 
 ```
 
-```django
+```html
 <form method="POST">
   {{ form.csrf_token }} 
   {{ form.name.label }} 
@@ -256,8 +264,10 @@ if __name__ == "__main__":
     app.run(port=5000, debug=True)
 ```
 
-```django
+```html
+{% raw %}
 {% import "bootstrap/wtf.html" as wtf %}
+{% endraw %}
 
 <form method="POST" novalidate>
     {{ wtf.quick_form(form) }}
@@ -318,6 +328,7 @@ if __name__ == "__main__":
 
 ```django
 <form method="POST">
+{% raw %}
 {% with messages = get_flashed_messages() %} 
     {% for message in messages %} 
         {% if message %}
@@ -325,6 +336,7 @@ if __name__ == "__main__":
         {% endif %} 
     {% endfor %} 
 {% endwith %}
+{% endraw %}
 
   {{ form.csrf_token }} 
   {{ form.submit() }}
@@ -429,20 +441,23 @@ def user(name):
     return render_template("index.html", name=name)
 ```
 
-```django
+```html
+{% raw %}
 {% if name %}
     <h1>Hello {{ name }}!</h1>
 {% else %}
     <h1>Hello, Flask!</h1>
 {% endif %}
+{% endraw %}
 ```
 
 ### For
 
-
-```django
+```html
+{% raw %}
 {% for record in records %}
     {{record.username}}
     {{record.number}}
 {% endfor %}
+{% endraw %}
 ```
