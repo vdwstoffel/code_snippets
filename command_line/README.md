@@ -185,6 +185,10 @@ chmod +x file.py
 tar -xvzf /path/to/yourfile.tgz
 ```
 
+```bash
+unzip file.zip -d destination_folder
+```
+
 # Packages
 
 ## .deb

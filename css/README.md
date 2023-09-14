@@ -10,6 +10,20 @@
 </head>
 ```
 
+# Reset all values
+
+```css
+* {
+  /* The width and height of the element include the content, padding, and border. */
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+```
+
 # Grid Display
 
 ## Grid Sizing

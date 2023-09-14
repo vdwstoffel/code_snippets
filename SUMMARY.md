@@ -1,7 +1,7 @@
 # Table of contents
 
 * [Bash](bash/README.md)
-* [B](c/README.md)
+* [C](c/README.md)
 * [Command Line](command\_line/README.md)
 * [CSS](css/README.md)
 * [Docker](docker/README.md)
