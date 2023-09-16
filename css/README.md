@@ -33,10 +33,9 @@ Create a 2x2 grid
 ```css
 .grid-example {
   display: grid;
-  /* the 2nd column will be twice the size of the 2nd column */
-  grid-template-columns: 1fr 2fr; /* 1:2 ratio*/
-  grid-template-rows: 1fr 1fr; /* 1:1 ration */
-  gap: 10px; /* gap between grids*/
+  grid-template-columns: 1fr 2fr; /* create two grids with a ratio 1:2 */
+  grid-template-rows: 1fr 1fr; /* create two grids with a 1:1 ration */
+  gap: 10px; /* gap between grids */
 }
 ```
 
@@ -55,8 +54,8 @@ Repeat the same x times: repeat (times, size)
 
 ```css
 .container {
-  grid-column: span 2;
-  grid-row: span 3;
+  grid-column: span 2; /* takes a columns */
+  grid-row: span 3; /* takes 3 rows*/
 }
 ```
 
