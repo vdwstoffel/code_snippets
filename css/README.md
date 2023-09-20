@@ -70,6 +70,14 @@ body {
 }
 ```
 
+## Center Item in div
+
+```css
+.item {
+  margin: auto;
+}
+```
+
 # Font Awesome
 
 Adding Font Awesome
