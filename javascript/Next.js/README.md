@@ -202,6 +202,8 @@ export async function getServerSideProps(context) {
   const req = context.req;
   const res = context.res;
   const query = context.query;
+  const url = req.url   // get access to the url
+
 
   const response = await axios.get("https://swapi.dev/api/people/1/");
   const peopleData = response.data;
