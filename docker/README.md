@@ -210,6 +210,36 @@ VOLUME ["path/to/file"]     # add if you need anonymous volumes
 CMD [ "executable" ]        # runs when container start
 ```
 
+## Node Example (with nodemon)
+
+```docker
+FROM node
+
+WORKDIR /app
+
+COPY package.json .
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
+```
+
+{% code title="package.json" %}
+```json
+"scripts": {
+    "start": "nodemon app.js"
+  },
+"devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+```
+{% endcode %}
+
+
 ## Variables in docker file
 
 ```docker
