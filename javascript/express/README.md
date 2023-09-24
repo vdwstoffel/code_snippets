@@ -152,6 +152,16 @@ app.get("/secret", protect, (req, res) => {
 });
 ```
 
+# Error route
+
+Add this as the last route. When no routes match this route will run
+
+```javascript
+app.use((req, res) => {
+  res.status(404).send("Not Found");
+});
+```
+
 # Templates
 
 ```bash
