@@ -1,30 +1,105 @@
-# Express
-
-## Express Backend
+# Getting Started
 
 ```bash
 npm i express
 ```
 
-```bash
-├── app.js
-├── controllers
-│   └── users.js
-├── models
-│   └── userModel.js
+```javascript
+const express = require("express");
+const app = express();
+
+// respond with "hello world" when a GET request is made to the homepage
+app.get("/", (req, res) => {
+  res.send("hello world");
+});
+
+// Start the server
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`http://localhost:${port}`);
+});
 ```
+
+# Route methods
+
+```javascript
+// GET method route
+app.get('/', (req, res) => {
+  res.send('GET request to the homepage')
+})
+
+// POST method route
+app.post('/', (req, res) => {
+  res.send('POST request to the homepage')
+})
+```
+
+# Route Parameters
+
+```javascript
+// http://localhost:3000/users/stoffel/books/mtg
+app.get("/users/:userId/books/:bookId", (req, res) => {
+  res.send(req.params); // {"userId":"stoffel","bookId":"mtg"}
+});
+```
+
+# Response Methods
+
+| Method          | Description                                       |
+|-----------------|---------------------------------------------------|
+| `res.download()`| Prompt a file to be downloaded.                   |
+| `res.end()`     | End the response process.                         |
+| `res.json()`    | Send a JSON response.                             |
+| `res.jsonp()`   | Send a JSON response with JSONP support.          |
+| `res.redirect()`| Redirect a request.                               |
+| `res.render()`  | Render a view template.                           |
+| `res.send()`    | Send a response of various types.                 |
+| `res.sendFile()`| Send a file as an octet stream.                   |
+| `res.sendStatus()`| Set the response status code and send its string representation as the response body. |
+
+# app.route()
+
+```javascript
+app.route('/book')
+  .get((req, res) => {
+    res.send('Get a random book')
+  })
+  .post((req, res) => {
+    res.send('Add a book')
+  })
+  .put((req, res) => {
+    res.send('Update the book')
+  })
+```
+
+# Controllers
+
+{% code title="controllers/birds.js" %}
+```javascript
+const express = require('express')
+const router = express.Router()
+
+// define the home page route
+router.get('/', (req, res) => {
+  res.send('Birds home page')
+})
+// define the about route
+router.get('/about', (req, res) => {
+  res.send('About birds')
+})
+
+module.exports = router
+```
+{% endcode %}
 
 {% code title="app.js" %}
 ```javascript
-"use strict";
-
-const express = require("express"); // npm i express
+const express = require("express");
 const app = express();
 
-// import controllers
-const users = require("./controllers/users");
-
-app.use("/", users);
+const birds = require("./controllers/birds");
+// ...
+app.use("/birds", birds);
 
 // Start the server
 const port = process.env.PORT || 3000;
@@ -34,53 +109,58 @@ app.listen(port, () => {
 ```
 {% endcode %}
 
-{% code title="/controllers/user.js" %}
+# Middleware
+
+## Run on each request
+
 ```javascript
-"use strict";
+const addDate = (req, res, next) => {
+  req.addDate = new Date().toISOString();
+  next(); // call next middleware. If no next, the request will hang
+};
+app.use(addDate); // add the middleware to each request
 
-const express = require("express");
-const router = express.Router();
+app.get("/", (req, res) => {
+  console.log(req.addDate); //send the date that was assigned with the middleware
+  res.send("Hello World")
+});
+```
 
-// Import db
-const DB = require("../models/userModel");
-const db = new DB();
+## Run on particular requests
 
-router.get("/users", async (req, res) => {
-  const data = await db.getUsers();
-  res.send(data);
+```javascript
+app.use("/api", (req, res, next) => {
+  console.log("Api route used");
+  next(); // call next middleware. If no next, the request will hang
 });
 
-module.exports = router;
+app.get("/api", addDate, (req, res) => {
+  res.send({ route: "api", date: "Today" });
+});
 ```
-{% endcode %}
 
-{% code title="/models/userModel.js" %}
+## Middleware on specific routes
+
 ```javascript
-"use strict";
+const protect = (req, res, next) => {
+  console.log("This route is protected");
+  next(); //  call next middleware. If no next, the request will hang
+};
 
-class DB {
-  getUsers = () => {
-    return { user: "Stoffel" };
-  };
-}
-
-module.exports = DB;
+app.get("/secret", protect, (req, res) => {
+  res.send("This is a secret route");
+});
 ```
-{% endcode %}
 
-## Express Frontend
+# Templates
 
 ```bash
-npm i express
 npm i ejs
-npm i morgan
 ```
 
 ```bash
 .
 ├── app.js
-├── controllers
-│   └── users.js
 ├── models
 │   └── userModel.js
 ├── public
@@ -90,23 +170,11 @@ npm i morgan
     └── index.ejs
 ```
 
-app.js
-
 ```javascript
-/*
-npm i express
-npm i ejs
-npm i morgan
-*/
-
 "use strict";
 
 const express = require("express");
 const app = express();
-const morgan = require("morgan");
-
-// Log the status code of the request
-app.use(morgan("dev"));
 
 // Set the view engine to EJS
 app.set("view engine", "ejs");
@@ -117,11 +185,10 @@ app.set("views", __dirname + "/views");
 // Use the built-in middleware to serve static files from the 'public' directory
 app.use(express.static("public"));
 
-// import controllers
-const users = require("./controllers/users");
-
 // routes
-app.use("/", users);
+router.get("/users", async (req, res) => {
+  res.render("index", { user: "Stoffel" });
+});
 
 // Start the server
 const port = process.env.PORT || 3000;
@@ -129,29 +196,6 @@ app.listen(port, () => {
   console.log(`http://localhost:${port}`);
 });
 ```
-
-/controllers/user.js
-
-```javascript
-"use strict";
-
-const express = require("express");
-const router = express.Router();
-
-// Import db
-const DB = require("../models/userModel");
-const db = new DB();
-
-router.get("/users", async (req, res) => {
-  const data = await db.getUsers();
-  res.render("index", { user: "Stoffel" });
-});
-
-module.exports = router;
-
-```
-
-/views/index.ejs
 
 ```html
 <!DOCTYPE html>
@@ -169,7 +213,7 @@ module.exports = router;
 </html>
 ```
 
-### Post data to server
+## Post data to server
 
 ```html
 <form  action="/" method="post">
@@ -187,78 +231,6 @@ app.use(express.urlencoded({extended: true}))
 app.post("/", (req, res) => {
   const { num1, num2 } = req.body;
 });
-```
-
-## Route Parameters
-
-```javascript
-// Route parameters     http://localhost:3000/parameters/stoffel/walt
-app.get('/parameters/:name/:surname', (req, res) => {
-    res.send(req.params);
-    // {"name":"stoffel","surname":"walt"}
-  })
-```
-
-## Middleware
-
-```javascript
-/*
-npm i express       https://www.npmjs.com/package/express
-npm i morgan        https://www.npmjs.com/package/morgan
-*/
-
-const express = require("express");
-const app = express();
-
-const morgan = require("morgan");
-// Log the status code of the request
-app.use(morgan("dev"));
-
-/*******************************************
- *****  Run middleware on each request ***** 
- *******************************************/
-const addDate = (req, res, next) => {
-  req.addDate = new Date().toISOString();
-  next(); // call next middleware. If no next, the request will hang
-};
-app.use(addDate); // add the middleware to each request
-
-app.get("/", (req, res) => {
-  res.send(req.addDate); //send the date that was assigned with the middleware
-});
-
-/***********************************************************
- *****  Use this middleware on each particular request *****
- ***********************************************************/
-app.use("/api", (req, res, next) => {
-  console.log("Api route used");
-  next(); // call next middleware. If no next, the request will hang
-});
-
-app.get("/api", addDate, (req, res) => {
-  res.send({ route: "api", date: req.addDate });
-});
-
-/*****************************************
- ***** Middleware on Specific Routes *****
- *****************************************/
-const protect = (req, res, next) => {
-  console.log("This route is protected");
-  next(); //  call next middleware. If no next, the request will hang
-};
-
-app.get("/secret", protect, (req, res) => {
-  res.send("This is a secret route");
-});
-
-/*********************************************************
- ***** If none of the routes match run the following *****
- *********************************************************/
-app.use((req, res) => {
-  res.status(404).send("Not Found");
-});
-
-app.listen(3000, () => console.log("http://localhost:3000"));
 ```
 
 ## ejs

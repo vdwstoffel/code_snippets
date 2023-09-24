@@ -20,7 +20,8 @@ const addDate = (req, res, next) => {
 app.use(addDate); // add the middleware to each request
 
 app.get("/", (req, res) => {
-  res.send(req.addDate); //send the date that was assigned with the middleware
+  console.log(req.addDate); //send the date that was assigned with the middleware
+  res.send("Hello World")
 });
 
 /***********************************************************
@@ -32,7 +33,7 @@ app.use("/api", (req, res, next) => {
 });
 
 app.get("/api", addDate, (req, res) => {
-  res.send({ route: "api", date: req.addDate });
+  res.send({ route: "api", date: "Today" });
 });
 
 /*****************************************
