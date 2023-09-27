@@ -61,15 +61,15 @@ Repeat the same x times: repeat (times, size)
 
 # Positioning
 
-| Position Value | Description                                                                                                                                                             |
-|----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `static`       | **Default**: Elements are positioned in the normal flow of the document. They are not affected by the `top`, `bottom`, `left`, or `right` properties.                |
-| `relative`     | Elements are positioned relative to their normal position in the document flow. You can use `top`, `bottom`, `left`, or `right` properties to offset the element.   |
-| `absolute`     | Elements are removed from the normal document flow and positioned relative to the nearest positioned ancestor (or the initial containing block if none).            |
-| `fixed`        | Elements are positioned relative to the viewport (the browser window). They do not move when the page is scrolled.                                                      |
-| `sticky`       | Elements are positioned based on the user's scroll position. They behave like `relative` until they reach a specified offset, then they become `fixed`.             |
+| Position Value | Description                                                                                                                                                       |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `static`       | **Default**: Elements are positioned in the normal flow of the document. They are not affected by the `top`, `bottom`, `left`, or `right` properties.             |
+| `relative`     | Elements are positioned relative to their normal position in the document flow. You can use `top`, `bottom`, `left`, or `right` properties to offset the element. |
+| `absolute`     | Elements are removed from the normal document flow and positioned relative to the nearest positioned ancestor (or the initial containing block if none).          |
+| `fixed`        | Elements are positioned relative to the viewport (the browser window). They do not move when the page is scrolled.                                                |
+| `sticky`       | Elements are positioned based on the user's scroll position. They behave like `relative` until they reach a specified offset, then they become `fixed`.           |
 
-## Absolute-Realtive 
+## Absolute-Realtive
 
 ```css
 .outer {
@@ -95,10 +95,22 @@ Repeat the same x times: repeat (times, size)
 
 ```css
 position: sticky;
-top: 20px;  /* space between element and parent*/
+top: 20px; /* space between element and parent*/
 ```
 
-# Center Page
+# Overflow
+
+```css
+div {
+  overflow: auto;
+}
+```
+
+![overflow-auto](./images/overflow_auto.png)
+
+# Layout
+
+## Center Page
 
 ```css
 body {
@@ -115,6 +127,35 @@ body {
 .item {
   margin: auto;
 }
+```
+
+## Center horizontal and vertical
+
+```css
+.container {
+  text-align: center;
+  height: 200px;
+  width: 400px;
+  position: relative;
+  border: 3px solid green;
+}
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+```
+
+```html
+<div class="container">
+  <div class="center">
+    <p>I am vertically and horizontally centered.</p>
+  </div>
+</div>
 ```
 
 # Font Awesome
