@@ -158,6 +158,8 @@ body {
 </div>
 ```
 
+![center-ver-hor](./images/center-hor-ver.png)
+
 # Font Awesome
 
 Adding Font Awesome
