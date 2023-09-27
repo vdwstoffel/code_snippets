@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Positioning</title>
+  </head>
+  <style>
+    body {
+      background-color: gray;
+    }
+
+    .outer {
+      width: 400px;
+      height: 400px;
+      border: solid black 1px;
+      margin: auto;
+      position: relative;
+    }
+
+    .box-1 {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+      position: absolute;
+      bottom: 10%;
+      left: 10%;
+    }
+
+    .box-1-1 {
+      width: 70px;
+      height: 70px;
+      background-color: black;
+      position: absolute;
+      right: 10%;
+      bottom: 10%;
+      color: white;
+    }
+  </style>
+  <body>
+    <div class="outer">
+      <h1>Outer</h1>
+      <div class="box-1">
+        <h1>Box-1</h1>
+        <div class="box-1-1">
+          <p>Box-1-1</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
