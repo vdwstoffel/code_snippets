@@ -72,3 +72,55 @@ POSTGRES_PASSWORD="StoffelJossie"
 POSTGRES_HOST="database"
 ```
 {% endcode %}
+
+# Mongo Example
+
+{% code title="docker-compose.yaml %}
+
+```yaml
+version: '3.8'
+services:
+
+  mongodb:
+    image: 'mongo'
+    container_name: mongodb:dev   # set a name for container
+    volumes:
+      - compose_example:/data/db
+    # environment:
+      # - MONGODB_USERNAME=stoffel
+      # - MONGODB_PASSWORD=secret
+    env_file:
+      - ./.env
+```
+
+{% endcode %}
+
+{% code title="model.js"%}
+```javascript
+// @mongodb represents the container name
+mongoose.connect(
+  `mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@mongodb:27017/db-name?authSource=admin`,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  },
+  (err) => {
+    if (err) {
+      console.error('FAILED TO CONNECT TO MONGODB');
+      console.error(err);
+    } else {
+      console.log('CONNECTED TO MONGODB!!');
+      app.listen(80);
+    }
+  }
+);
+```
+{% endcode %}
+
+{% code title=".env"%}
+
+```plaintext
+MONGODB_USERNAME='stoffel'
+MONGODB_PASSWORD='secret'
+```
+{% endcode %}
