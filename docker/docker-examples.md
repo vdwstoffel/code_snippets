@@ -83,7 +83,7 @@ services:
 
   mongodb:
     image: 'mongo'
-    container_name: mongodb:dev   # set a name for container
+    container_name: mongodb   # set a name for container
     volumes:
       - compose_example:/data/db
     # environment:
