@@ -117,18 +117,22 @@ const findAll = async () => {
 
 {% endcode %}
 
+## Create
+
+```javascript
+await User.create({
+  name: "Stoffel",
+  age: 30,
+  hobbies: ["Programming", "Gaming"],
+});
+```
+
 ## Find
 
 ```javascript
 const query = await User.find(); // Find all
-const query = await Movie.find({ year: { $gte: 1980, $lte: 1989 } }); // add filter
+const query = await User.find({age: {$gte: 1, $lte: 10}}); // $gte: greate than, $lte: less than 
 const query = await User.findOne({ username: name });
-```
-
-## Create
-
-```javascript
-await Character.create({ name: "Jean-Luc Picard" });
 ```
 
 ## Update
@@ -137,15 +141,16 @@ await Character.create({ name: "Jean-Luc Picard" });
 const id = await findUserId(name);
 await User.findOneAndUpdate(id, { age: age });
 
-const query = { name: "borne" };
-Model.findOneAndUpdate(query, { name: "jason bourne" });
+// username to find, username to update to
+await User.findOneAndUpdate({ username: "Stoffel" }, { username: "Christoff" });
 ```
 
 ## Delete
 
 ```javascript
 await User.deleteMany(); // Delete all
-await Character.deleteMany({ name: /Stark/, age: { $gte: 18 } }); // filtered
+await User.deleteMany({ age: { $gte: ageAbove } });
+await User.deleteMany({ username: /Mav/ });
 
 await User.deleteOne({ username: name });
 
