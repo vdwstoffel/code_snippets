@@ -64,25 +64,19 @@ class User extends Connector {
 ```
 
 # Mongoose
+
 ```bash
 npm i mongoose
 ```
+
+{% code title="userModel.js" %}
+
 ```javascript
 "use strict";
 
-const mongoose = require("mongoose");     // npm install mongoose
+const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 
-// Connect to database
-mongoose
-  .connect("mongodb://localhost/code_snippets")
-  .then((res) => console.log("Connection Successfull"))
-  .catch((err) => console.log("Connection Failed"));
-
-/*******************
- ***** SCHEMAS *****
- *******************/
-/* Create a new Schema with validation */
 const UsersSchema = new Schema({
   username: {
     type: String,
@@ -97,83 +91,64 @@ const UsersSchema = new Schema({
   hobbies: [],
 });
 
-// Compile Model
-const Users = model("Users", UsersSchema);
+module.exports = model("User", UsersSchema); // Create and export the schema
+```
 
-/*******************
- ****** CREATE *****
- *******************/
-const createUser = async (name, age, hobbies) => {
-  try {
-    await Users.create({
-      username: name,
-      age: age,
-      hobbies: hobbies,
-    });
-  } catch (err) {
-    console.log(err);
-  }
-};
+{% endcode %}
 
-/***************
- ***** FIND *****
- ****************/
+{% code title="app.js" %}
+
+```javascript
+"use strict";
+
+const mongoose = require("mongoose");
+const User = require("./userModel");
+
+mongoose
+  .connect("mongodb://127.0.0.1:27017/demoApp")
+  .then((res) => console.log("Connected!"))
+  .catch((err) => console.log(err));
+
 const findAll = async () => {
-  const query = await Users.find();
+  const query = await User.find();
   console.log(query);
 };
+```
 
-const findUserId = async (name) => {
-  const query = await Users.findOne({ username: name });
-  return query._id;
-};
+{% endcode %}
 
-/****************
- ***** UPDATE ****
- *****************/
-const updateUser = async (name, age, hobbies) => {
-  await Users.updateOne({
-    username: name,
-    age: age,
-    hobbies: hobbies,
-  });
-};
+## Find
 
-const findAndUpdate = async (name, age) => {
-  const id = await findUserId(name);
-  await Users.findOneAndUpdate(id, { age: age });
-};
+```javascript
+const query = await User.find(); // Find all
+const query = await Movie.find({ year: { $gte: 1980, $lte: 1989 } }); // add filter
+const query = await User.findOne({ username: name });
+```
 
-/*****************
- ***** DELETE *****
- ******************/
-const deleteAll = async () => {
-  await Users.deleteMany();
-};
+## Create
 
-const deleteUser = async (name) => {
-  await Users.deleteOne({ username: name });
-};
+```javascript
+await Character.create({ name: "Jean-Luc Picard" });
+```
 
-const deleteUserById = async (name) => {
-  const id = await findUserId(name);
-  await Users.findByIdAndDelete(id);
-};
+## Update
 
-/********************
- ***** RELATIONS ****
- ********************/
-const authorSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-});
+```javascript
+const id = await findUserId(name);
+await User.findOneAndUpdate(id, { age: age });
 
-const postSchema = new mongoose.Schema({
-  title: String,
-  content: String,
-  author: { type: mongoose.Schema.Types.ObjectId, ref: "Author" },
-});
+const query = { name: "borne" };
+Model.findOneAndUpdate(query, { name: "jason bourne" });
+```
 
-const Author = mongoose.model("Author", authorSchema);
-const Post = mongoose.model("Post", postSchema);
+## Delete
+
+```javascript
+await User.deleteMany(); // Delete all
+await Character.deleteMany({ name: /Stark/, age: { $gte: 18 } }); // filtered
+
+await User.deleteOne({ username: name });
+
+const id = await findUserId(name);
+await User.findByIdAndDelete(id);
 ```
