@@ -1,3 +1,27 @@
+# Connecting Express + React (vite)
+
+{% code title="vite.config.js"%}
+```javascript
+server: {
+    proxy: {
+      "/api": {
+        target: "http://localhost:<express-port>", // Your Express backend URL
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""), // Remove '/api' prefix
+      },
+    },
+  },
+```
+{% endcode %}
+
+{% code title="App.jsx"%}
+
+```javascript
+const res = await axios.get("api/backend-route");
+```
+
+{% endcode %}
+
 # Authentication with express example
 
 ## Express
