@@ -1,4 +1,6 @@
-# Getting Started
+# React
+
+## Getting Started
 
 ```bash
 # Create React App
@@ -12,9 +14,9 @@ cd my-app
 npm run dev
 ```
 
-# Components
+## Components
 
-## Functional Components
+### Functional Components
 
 ```javascript
 import "./global.css";
@@ -29,7 +31,7 @@ export default function App() {
 }
 ```
 
-## Class Based Components
+### Class Based Components
 
 ```javascript
 import React from "react";
@@ -61,7 +63,7 @@ class setStateExample extends React.Component {
 export default setStateExample;
 ```
 
-# Fragments
+## Fragments
 
 ```javascript
 import { Fragment } from "react";
@@ -82,7 +84,7 @@ export default function FragmentExample() {
 }
 ```
 
-# Props
+## Props
 
 PropsExample.jsx
 
@@ -107,7 +109,7 @@ export default function App() {
 }
 ```
 
-# Conditionals
+## Conditionals
 
 ```javascript
 export default function App() {
@@ -116,7 +118,7 @@ export default function App() {
 }
 ```
 
-# Loops
+## Loops
 
 ```javascript
 export default function App() {
@@ -133,7 +135,7 @@ export default function App() {
 }
 ```
 
-# UseState
+## UseState
 
 `useState` is a React hook that allows functional components to manage and update state.
 
@@ -158,7 +160,7 @@ export default function App() {
 }
 ```
 
-# UseEffect
+## UseEffect
 
 `useEffect` is a React hook that enables functional components to perform side effects, such as data fetching or DOM manipulation, after rendering.
 
@@ -185,7 +187,7 @@ export default function App() {
 }
 ```
 
-# useRef
+## useRef
 
 `useRef` is a React hook used to create a mutable reference that persists across renders and can be used to interact with DOM elements or store values without causing re-renders.
 
@@ -218,7 +220,7 @@ function App() {
 export default App;
 ```
 
-# useReducer
+## useReducer
 
 `useReducer` is a React hook that manages complex state logic by dispatching actions to a reducer function, allowing components to update state in a more organized and predictable manner.
 
@@ -257,7 +259,7 @@ export default function App() {
 }
 ```
 
-# useContext
+## useContext
 
 `useContext` is a React hook that allows components to access shared data or values from a parent component's context without the need for prop drilling.
 
@@ -333,7 +335,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 );
 ```
 
-# Custom Hooks
+## Custom Hooks
 
 /hooks/useToggler.jsx
 
@@ -371,7 +373,7 @@ export default function App() {
 }
 ```
 
-# Router
+## Router
 
 ```bash
 npm i react-router-dom
@@ -457,7 +459,7 @@ export default function Products() {
 }
 ```
 
-## Dynamic Router
+### Dynamic Router
 
 App.jsx
 
@@ -497,7 +499,7 @@ export default function ProductItems() {
 }
 ```
 
-## useNavigate
+### useNavigate
 
 Home.jsx
 
@@ -520,7 +522,7 @@ export default function Home() {
 }
 ```
 
-## Link
+### Link
 
 ```javascript
 import { Link } from "react-router-dom";
@@ -530,7 +532,7 @@ export default function Page() {
 }
 ```
 
-## Navlink
+### Navlink
 
 ```javascript
 import { NavLink } from "react-router-dom";
@@ -540,7 +542,7 @@ export default function App() {
 }
 ```
 
-## useLoaderData
+### useLoaderData
 
 Load the data before the page loads and pass the data to the page
 
@@ -581,7 +583,7 @@ export async function loader() {
 }
 ```
 
-## useLoaderData Dynamic Routing
+### useLoaderData Dynamic Routing
 
 Content.jsx
 
@@ -623,7 +625,7 @@ export default function App() {
 }
 ```
 
-## useRouterError
+### useRouterError
 
 Create a custom error component and send error to it. Whenever an error occurs react will find the closest errorElement
 
@@ -690,7 +692,7 @@ export default function Error() {
 }
 ```
 
-## useSearchParam
+### useSearchParam
 
 The useSearchParams hook is used in React Router to access and manage the query parameters of the current URL, allowing components to read and update the search parameters in the browser's address bar.
 
@@ -727,7 +729,7 @@ export default function Products() {
 }
 ```
 
-## userRouterLoaderData
+### userRouterLoaderData
 
 This hook makes the data at any currently rendered route available anywhere in the tree
 
@@ -774,7 +776,7 @@ export function getUsername() {
 }
 ```
 
-## Router Forms
+### Router Forms
 
 App.jsx
 
@@ -827,7 +829,7 @@ export async function action({ request, params }) {
 }
 ```
 
-## Delete Request
+### Delete Request
 
 App.jsx
 
@@ -879,7 +881,7 @@ export async function action({ request, params }) {
 }
 ```
 
-# Forms
+## Forms
 
 App.jsx
 
@@ -940,7 +942,7 @@ export default function useFormInput(initialValue) {
 }
 ```
 
-## Frontend Form Validation
+### Frontend Form Validation
 
 App.jsx
 
@@ -993,7 +995,7 @@ App.module.css
 }
 ```
 
-# Passing Data to Parent Prop
+## Passing Data to Parent Prop
 
 App.jsx
 
@@ -1054,7 +1056,7 @@ export default function Names(props) {
 }
 ```
 
-# Portals
+## Portals
 
 App.jsx
 
@@ -1085,7 +1087,7 @@ index.html
 </body>
 ```
 
-# React Redux
+## React Redux
 
 ```bash
 npm i @reduxjs/toolkit
@@ -1206,7 +1208,7 @@ export default store; // will be imported in main as a Wrapper for the app
  */
 ```
 
-# Scoping CSS
+## Scoping CSS
 
 App.jsx
 
@@ -1267,9 +1269,7 @@ App.module.css
 }
 ```
 
-
-
-# Vite: Change Default Port
+## Vite: Change Default Port
 
 vite.config.js
 
@@ -1285,9 +1285,9 @@ export default defineConfig({
 });
 ```
 
-# Various
+## Various
 
-## Timeout on input changes
+### Timeout on input changes
 
 ```javascript
 useEffect(() => {
@@ -1303,7 +1303,7 @@ useEffect(() => {
 });
 ```
 
-## Show current link page
+### Show current link page
 
 ```javascript
 <NavLink
@@ -1313,7 +1313,7 @@ useEffect(() => {
 >
 ```
 
-# Testing
+## Testing
 
 App.test.js
 
@@ -1366,9 +1366,9 @@ describe("App component", () => {
 npm test
 ```
 
-## Async Code
+### Async Code
 
-<figcaption>App.test.js
+App.test.js
 
 ```javascript
 import { render, screen } from "@testing-library/react";
@@ -1408,7 +1408,7 @@ package.json
   },
 ```
 
-## Vite
+### Vite
 
 Vite requires some modification [see here](https://dev.to/pacheco/configure-vitest-with-react-testing-library-5cbb)
 
@@ -1435,7 +1435,7 @@ path/setup.ts
 ```javascript
 import { expect, afterEach } from "vitest";
 import { cleanup } from "@testing-library/react";
-import matchers from "@testing-library/jest-dom/matchers";
+import * as matchers from "@testing-library/jest-dom/matchers";
 
 expect.extend(matchers);
 
@@ -1446,7 +1446,7 @@ afterEach(() => {
 
 * Configure vite.config.js to use this setup
 
-<figcaption>vite.config.js
+vite.config.js
 
 ```javascript
   plugins: [react()],
@@ -1476,7 +1476,7 @@ describe('App', () => {
 });
 ```
 
-# Extensions
+## Extensions
 
 [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
 

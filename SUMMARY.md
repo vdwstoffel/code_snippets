@@ -1,5 +1,6 @@
 # Table of contents
 
+* [README](README.md)
 * [Bash](bash/README.md)
 * [C](c/README.md)
 * [Command Line](command\_line/README.md)
@@ -10,7 +11,7 @@
 * [Javascript](javascript/README.md)
   * [Next.js](javascript/Next.js/README.md)
   * [React](javascript/React/README.md)
-    * [Examples](./javascript/React/examples.md)
+    * [Examples](javascript/React/examples.md)
   * [Databases](javascript/databases/README.md)
   * [Express](javascript/express/README.md)
   * [Other](javascript/other/README.md)
