@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .box {
+      width: 100%;
+      height: 50vh;
+      border: 1px black solid;
+    }
+
+    .fit-div {
+      background-image: url("./images/background-img.jpg");
+      background-repeat: no-repeat;
+
+      background-size: 100% 50%; /* Set width and height */
+      background-size: cover; /* auto scale to never have white space */
+
+      background-position: 0% 10%; /* left edge, amount to crop at top*/
+      background-position: center; /* Crop same amount top and bottom */
+    }
+
+    .linear-gradient {
+      background-image: linear-gradient(145deg, red 20%, blue 60%, green); /* direction , color (when to transition)*/
+    }
+
+    .radial-gradient {
+      background-image: radial-gradient(circle 50em at 10% 80%, red 20%, blue);
+    }
+
+    .stack {
+      background: linear-gradient(180deg, black 25%, rgba(128, 128, 128, 0.43)), url("./images/background-img.jpg");
+    }
+  </style>
+  <body>
+    <h1>Fit Image to div</h1>
+    <div class="box fit-div"></div>
+
+    <h1>Linear Gradinet</h1>
+    <div class="box linear-gradient"></div>
+
+    <h1>Radial Gradinet</h1>
+    <div class="box radial-gradient"></div>
+
+    <h1>Stack Backgrounds</h1>
+    <div class="box stack"></div>
+  </body>
+</html>

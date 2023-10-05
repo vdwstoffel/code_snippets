@@ -160,6 +160,38 @@ body {
 
 ![center-ver-hor](./images/center-hor-ver.png)
 
+# Background
+
+```css
+background-image: url("./images/background-img.jpg");
+background-repeat: no-repeat;
+
+background-size: 100% 50%; /* Set width and height */
+background-size: cover; /* auto scale to never have white space */
+
+background-position: 0% 10%; /* left edge, amount to crop at top*/
+background-position: center; /* Crop same amount top and bottom */
+
+background-image: linear-gradient(145deg, red 20%, blue 60%, green); /* direction , color (when to transition)*/
+/*               shape (circle/ ellipse) size   left, top     start transition */
+background-image: radial-gradient(circle 50em at 10% 80%, red 20%, blue);
+
+/* Stack background - first option, second option fallback*/
+background: linear-gradient(), url() , #ff1b68;
+
+/* Add filer */
+filter: blur(5px);
+filter: brightness(0.4);
+filter: contrast(200%);
+filter: drop-shadow(16px 16px 20px blue);
+filter: grayscale(50%);
+filter: hue-rotate(90deg);
+filter: invert(75%);
+filter: opacity(25%);
+filter: saturate(30%);
+filter: sepia(60%);
+```
+
 # Font Awesome
 
 Adding Font Awesome
